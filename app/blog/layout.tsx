@@ -1,7 +1,6 @@
 'use client'
 import { TextMorph } from '@/components/ui/text-morph'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
-import { ImpactMetrics } from '@/components/ui/impact-metrics'
 import { useEffect, useState } from 'react'
 
 function CopyButton() {
@@ -53,6 +52,3 @@ export default function LayoutBlogPost({
     </>
   )
 }
-
-// Export ImpactMetrics for use in MDX files
-export { ImpactMetrics }
