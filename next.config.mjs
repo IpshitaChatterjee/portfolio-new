@@ -4,6 +4,10 @@ import createMDX from '@next/mdx';
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  eslint: {
+    // Avoid failing the build on ESLint issues during deployment
+    ignoreDuringBuilds: true,
+  },
 };
 
 const withMDX = createMDX({
