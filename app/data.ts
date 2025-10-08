@@ -133,6 +133,10 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'LinkedIn',
     link: 'https://www.linkedin.com/in/ipshita-ch/',
   },
+  {
+    label: 'CV',
+    link: 'https://drive.google.com/file/d/14q2hEY2TG1tOz2ZJdZlyHLOTiFjQjJLx/view?usp=sharing',
+  },
 ]
 
 export const EMAIL = 'ipshita.chatterjee02@gmail.com'
