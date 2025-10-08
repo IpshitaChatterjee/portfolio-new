@@ -15,6 +15,7 @@ type WorkExperience = {
   end: string
   link: string
   id: string
+  description: string
 }
 
 type BlogPost = {
@@ -54,11 +55,12 @@ export const PROJECTS: Project[] = [
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'JP Morgan Chase & Co.',
-    title: 'UX Associate',
+    title: 'Sr. UX Associate',
     start: '2025',
     end: 'Present',
     link: 'https://www.chase.com/',
     id: 'work1',
+    description: 'Design initiatives across Sales and Originations verticals within home lending',
   },
   {
     company: 'EY Studio +',
@@ -67,6 +69,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     end: '2025',
     link: 'https://www.studio.ey.com/en_gl',
     id: 'work2',
+    description: 'Product design and consulting for Comcast Business, a large B2B telco',
   },
   {
     company: 'UXReactor',
@@ -75,6 +78,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     end: '2021',
     link: 'https://uxreactor.com/',
     id: 'work3',
+    description: 'Fast paced design innovation for several clients.',
   },
   {
     company: 'Infosys',
@@ -83,6 +87,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     end: '2020',
     link: 'https://www.infosys.com/',
     id: 'work4',
+    description: 'iOS development for LEX, a cross-platform ed-tech application.',
   },
 ]
 
