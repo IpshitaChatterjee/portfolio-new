@@ -31,7 +31,7 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Broadband labels for Comcast Business',
+    name: 'Broadband label -  Comcast Business',
     description:
       'Advanced components and templates to craft beautiful websites.',
     link: 'https://pro.motion-primitives.com/',
