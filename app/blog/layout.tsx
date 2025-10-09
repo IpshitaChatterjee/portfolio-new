@@ -3,31 +3,63 @@ import { TextMorph } from '@/components/ui/text-morph'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 import { useEffect, useState } from 'react'
 import { Analytics } from "@vercel/analytics/next"
+import { motion, AnimatePresence } from 'framer-motion'
+import { Link, Check } from 'lucide-react'
+
 
 function CopyButton() {
-  const [text, setText] = useState('Copy')
+  const [isCopied, setIsCopied] = useState(false)
   const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
 
-  useEffect(() => {
-    setTimeout(() => {
-      setText('Copy')
-    }, 2000)
-  }, [text])
+  const handleCopy = async () => {
+    setIsCopied(true)
+    await navigator.clipboard.writeText(currentUrl)
+    setTimeout(() => setIsCopied(false), 1500)
+  }
 
   return (
     <button
-      onClick={() => {
-        setText('Copied')
-        navigator.clipboard.writeText(currentUrl)
+      onClick={handleCopy}
+      style={{
+        background: '#F4F4F4',
+        borderRadius: '50%',
+        border: 'none',
+        width: 32,
+        height: 32,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
       }}
-      className="font-base flex items-center gap-1 text-center text-sm text-zinc-500 transition-colors dark:text-zinc-400"
       type="button"
     >
-      <TextMorph>{text}</TextMorph>
-      <span>URL</span>
+      <AnimatePresence mode="wait" initial={false}>
+        {isCopied ? (
+          <motion.span
+            key="check"
+            initial={{ opacity: 0, scale: 0.8, filter: 'blur(4px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, scale: 0.8, filter: 'blur(4px)' }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+          >
+            <Check size={16} color="#222" />
+          </motion.span>
+        ) : (
+          <motion.span
+            key="link"
+            initial={{ opacity: 0, scale: 0.8, filter: 'blur(4px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, scale: 0.8, filter: 'blur(4px)' }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+          >
+            <Link size={16} color="#222" />
+          </motion.span>
+        )}
+      </AnimatePresence>
     </button>
   )
 }
+
 
 export default function LayoutBlogPost({
   children,
