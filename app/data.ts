@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
     description: 'Helping Correspondents raise tickets.',
     link: 'https://motion-primitives.com/',
     blogLink: '/blog/broadband_labels',
-    video: '/broadband-labels-hero.jpg',
+    video: '/hero.jpg',
     id: 'project2',
     requiresPassword: true,
   },
