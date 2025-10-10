@@ -34,7 +34,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Broadband label -  Comcast Business',
     description:
-      'Advanced components and templates to craft beautiful websites.',
+      'Introducing FCC mandated broadband labels to existing customer experience',
     link: 'https://pro.motion-primitives.com/',
     blogLink: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
     video: '/broadband-labels-hero.jpg',
