@@ -133,11 +133,20 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <div className="flex-1 mb-4">
+          <p className="text-zinc-600 dark:text-zinc-400">
+          Hey! I'm Ipshita 👋
+          </p>
+        </div>
+        <div className="flex-1 mb-4">
+          <p className="text-zinc-600 dark:text-zinc-400">
+            I enjoy learning about new developments in the tech space and collaborating with cross-functional and global teams. 
+          </p> 
+        </div>
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-          I'm a firm believer in continuous learning and enjoy collaborating with cross-functional, global teams to deliver user-centric solutions. 
-          My goal is to combine technical skill with creative problem-solving to build designs that are not only beautiful but also highly functional.
-          </p>
+            When I am not working I love to, read 📖, or play games on my xbox 🎮  
+          </p> 
         </div>
       </motion.section>
 
