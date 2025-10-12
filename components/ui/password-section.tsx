@@ -38,10 +38,10 @@ export function PasswordSection({ children }: PasswordSectionProps) {
       <div className="relative">
         {/* Fading content that becomes clear when authenticated */}
         <div className="relative z-0">
-          <div className="text-gray-600 mb-4">
+          <div className="text-zinc-600 dark:text-zinc-400 mb-4">
             The solution involved creating a comprehensive design system and implementing modern UX patterns to address these challenges. Our approach focused on user-centered design principles and iterative development to ensure the final product met both user needs and business requirements.
           </div>
-          <div className="text-gray-600 mb-4">
+          <div className="text-zinc-600 dark:text-zinc-400 mb-4">
             Through extensive user research and stakeholder interviews, we identified key pain points in the existing system and developed targeted solutions to improve the overall experience for correspondents and loan agents.
           </div>
         </div>
@@ -53,27 +53,27 @@ export function PasswordSection({ children }: PasswordSectionProps) {
   return (
     <div className="relative">
       {/* Fading overlay effect - only shown when not authenticated */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white pointer-events-none z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white dark:via-zinc-950/50 dark:to-zinc-950 pointer-events-none z-10" />
       
       {/* Faded content above password section */}
       <div className="relative z-0 opacity-50">
-        <div className="text-gray-600 mb-4">
+        <div className="text-zinc-600 dark:text-zinc-400 mb-4">
           Through extensive user research and stakeholder interviews, we identified key pain points in the existing system and developed targeted solutions to improve the overall experience for correspondents.
         </div>
       </div>
       
       {/* Password protection section */}
-      <div className="relative z-20 bg-white pt-8">
+      <div className="relative z-20 bg-white dark:bg-zinc-950 pt-8">
         <Card className="max-w-md mx-auto">
           <CardHeader className="text-center">
-            <h3 className="text-2xl font-bold">
+            <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
               🔒 This case study is password protected
             </h3>
-            <CardDescription className="text-base">
+            <CardDescription className="text-base text-zinc-600 dark:text-zinc-400">
               Enter a password to view the rest of the case study, or email{' '}
               <a 
                 href="mailto:ipshita.chatterjee02@gmail.com" 
-                className="underline"
+                className="underline text-zinc-900 dark:text-zinc-100 hover:text-zinc-700 dark:hover:text-zinc-300"
               >
                 ipshita.chatterjee02@gmail.com
               </a>
@@ -93,7 +93,7 @@ export function PasswordSection({ children }: PasswordSectionProps) {
               </div>
 
               {error && (
-                <p className="text-sm text-red-600">
+                <p className="text-sm text-red-600 dark:text-red-400">
                   {error}
                 </p>
               )}
@@ -101,7 +101,7 @@ export function PasswordSection({ children }: PasswordSectionProps) {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-black text-white hover:bg-gray-800"
+                className="w-full bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
               >
                 {isLoading ? 'Accessing...' : 'Access'}
               </Button>
