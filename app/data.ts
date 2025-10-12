@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
     name: 'Chase Investor Portal - Help requests',
     description: 'Helping Correspondents raise tickets.',
     link: 'https://motion-primitives.com/',
-    blogLink: '/blog/example-mdx-metadata',
+    blogLink: '/blog/chase-correspondent',
     video: '/hero.jpg',
     id: 'project2',
   },
