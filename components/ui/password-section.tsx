@@ -58,10 +58,7 @@ export function PasswordSection({ children }: PasswordSectionProps) {
       {/* Faded content above password section */}
       <div className="relative z-0 opacity-50">
         <div className="text-gray-600 mb-4">
-          The solution involved creating a comprehensive design system and implementing modern UX patterns to address these challenges. Our approach focused on user-centered design principles and iterative development to ensure the final product met both user needs and business requirements.
-        </div>
-        <div className="text-gray-600 mb-4">
-          Through extensive user research and stakeholder interviews, we identified key pain points in the existing system and developed targeted solutions to improve the overall experience for correspondents and loan agents.
+          Through extensive user research and stakeholder interviews, we identified key pain points in the existing system and developed targeted solutions to improve the overall experience for correspondents.
         </div>
       </div>
       
