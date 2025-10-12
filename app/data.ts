@@ -44,10 +44,9 @@ export const PROJECTS: Project[] = [
     name: 'Chase Investor Portal - Help requests',
     description: 'Helping Correspondents raise tickets.',
     link: 'https://motion-primitives.com/',
-    blogLink: '/blog/broadband_labels',
+    blogLink: '/blog/example-mdx-metadata',
     video: '/hero.jpg',
     id: 'project2',
-    requiresPassword: true,
   },
 ]
 
