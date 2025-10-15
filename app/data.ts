@@ -133,7 +133,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'CV',
-    link: 'https://drive.google.com/file/d/14q2hEY2TG1tOz2ZJdZlyHLOTiFjQjJLx/view?usp=sharing',
+    link: 'https://drive.google.com/file/d/1-pgA94O5KoaCJZAI54jCSLZswO32zggs/view?usp=sharing',
   },
 ]
 
