@@ -145,7 +145,7 @@ export default function Personal() {
         </div>
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            When I am not working I love to, read 📖, or play games on my xbox 🎮  
+            When I am not working I love to read 📖, or play games on my xbox 🎮  
           </p> 
         </div>
       </motion.section>
