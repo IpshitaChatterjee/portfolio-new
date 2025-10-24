@@ -89,8 +89,8 @@ export function TableOfContents() {
           }
         })
 
-        if (activeEntry) {
-          setActiveId(activeEntry.target.id)
+        if (activeEntry && activeEntry.target) {
+          setActiveId((activeEntry.target as HTMLElement).id)
         }
       },
       {
