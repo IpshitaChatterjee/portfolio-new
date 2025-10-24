@@ -25,7 +25,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return <ImageModal src={src} alt={alt} caption={caption} />
     },
     img: ({ src, alt, ...props }: ComponentPropsWithoutRef<'img'>) => {
-      return <ImageModal src={src || ''} alt={alt || ''} />
+      return <ImageModal src={typeof src === 'string' ? src : ''} alt={alt || ''} />
     },
     code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
       const codeHTML = highlight(children as string)

@@ -82,15 +82,18 @@ export function TableOfContents() {
         let maxRatio = 0
         let activeEntry: IntersectionObserverEntry | null = null
 
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
             maxRatio = entry.intersectionRatio
             activeEntry = entry
           }
-        })
+        }
 
-        if (activeEntry && activeEntry.target) {
-          setActiveId((activeEntry.target as HTMLElement).id)
+        if (activeEntry) {
+          const target = activeEntry.target as HTMLElement
+          if (target && target.id) {
+            setActiveId(target.id)
+          }
         }
       },
       {
