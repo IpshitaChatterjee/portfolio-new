@@ -140,7 +140,7 @@ export default function Personal() {
         </div>
         <div className="flex-1 mb-4">
           <p className="text-zinc-600 dark:text-zinc-400">
-            I enjoy learning about new developments in the tech space and collaborating with cross-functional teams. 
+            I enjoy learning about new developments in the tech space and collaborating with cross-functional and global teams. 
           </p> 
         </div>
         <div className="flex-1">
