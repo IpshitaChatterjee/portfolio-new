@@ -80,7 +80,7 @@ export function TableOfContents() {
       (entries) => {
         // Find the entry with the highest intersection ratio
         let maxRatio = 0
-        let activeEntry = null
+        let activeEntry: IntersectionObserverEntry | null = null
 
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
