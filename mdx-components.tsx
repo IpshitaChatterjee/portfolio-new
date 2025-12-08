@@ -3,12 +3,22 @@ import { ComponentPropsWithoutRef } from 'react'
 import { highlight } from 'sugar-high'
 import { ImpactMetrics } from '@/components/ui/impact-metrics'
 import { ImageModal } from '@/components/ui/image-modal'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 import { slugify } from '@/lib/utils'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
     ImpactMetrics,
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
     h2: ({ children, ...props }: ComponentPropsWithoutRef<'h2'>) => {
       const slug = slugify(children as string)
       return <h2 id={slug} {...props}>{children}</h2>

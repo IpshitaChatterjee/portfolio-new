@@ -15,7 +15,7 @@ Chase Home Lending, a division of JPMorgan Chase, offers a variety of mortgage p
 They focus on providing personalized support to clients throughout the home financing process, leveraging their resources and technology 
 to make homeownership accessible and straightforward.
 
-## Impact Created
+## Impact
 
 <ImpactMetrics 
   metrics={[
@@ -31,40 +31,51 @@ to make homeownership accessible and straightforward.
 ## Project brief
 For this project, I worked on the loan help requests ticketing system for the Correspondent experience. 
 
-### Who is a Correspondent?
-A Correspondent is usually a company comprising a group of lenders that purchase home loans using their own money. 
-They then sell these loans to Chase to make a profit. After the sale, Chase typically manages the loan for the new homeowners.
+<Accordion type="single" collapsible className="w-full">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Who is a Correspondent?</AccordionTrigger>
+    <AccordionContent>
+      A Correspondent is usually a company comprising a group of lenders that purchase home loans using their own money. 
+      They then sell these loans to Chase to make a profit. After the sale, Chase typically manages the loan for the new homeowners.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>What are loan help requests?</AccordionTrigger>
+    <AccordionContent>
+      The correspondent lending process can often be lengthy and typically involves numerous checks and processes before Chase 
+      decides to purchase the loan. During this process, either the Correspondent may need information updates from Chase, or Chase may 
+      need some more details from the Correspondent. To facilitate this experience, we have created a ticketing system for raising and managing requests.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-3">
+    <AccordionTrigger>Who acts on these requests?</AccordionTrigger>
+    <AccordionContent>
+      Loan agents who are equipped to work with correspondents take up these requests.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
 
-### What are loan help requests?
-The correspondent lending process can often be lengthy and typically involves numerous checks and processes before Chase 
-decides to purchase the loan. During this process, either the Correspondent may need information updates from Chase, or Chase may 
-need some more details from the Correspondent. To facilitate this experience, we have created a ticketing system for raising and managing requests.
-
-### Who acts on these requests?
-Loan agents who are equipped to work with correspondents take up these requests.
-
----
-
-## The Problem
+## The problem
 Although the ticketing system (correspondent-facing) existed, it had not been updated since 2000 
 and was due for not only a visual but also an experience upgrade. 
 
-### EPIC requirements
-- Update legacy ticket submission portal for Correspondents.
-- We are also in the process of stereamilining all client experiences on a new Chase Investor Portal, 
-and the new ticketing portal had to account for the constraints the portal presented.
-- The Chase investor portal in itself did not have a cohesive set of design pattern documentation. 
-So far, the designs had been created randomly, and the application as a whole looked fragmented.
-- We also had to devise a method to keep Correspondents updated as and when their tickets change status. 
-Currently, this is not being done.
+<Accordion type="single" collapsible className="w-full">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>EPIC requirements</AccordionTrigger>
+    <AccordionContent>
+      - Update legacy ticket submission portal for Correspondents.
+      - Ensure that the new ticketing feature accounts for the constraints the existing Chase Investor Portal.
+      - We also had to devise a method to keep Correspondents updated as and when their tickets change status. Currently, this is not being done.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
 
----
 
 import { PasswordSection } from '@/components/ui/password-section'
 
-<PasswordSection>
+<PasswordSection> 
 
-## The Solution
+## The solution
 
 This section contains the detailed solution and implementation details for the Chase Investor Portal project.
 
