@@ -75,22 +75,60 @@ import { PasswordSection } from '@/components/ui/password-section'
 
 <PasswordSection> 
 
+---
+
 ## The solution
 
-This section contains the detailed solution and implementation details for the Chase Investor Portal project.
+### Current state - pain points
+Based on our analysis and interviews with key stakeholders, we identified the below pain points.
 
-### Design System Creation
-We created a comprehensive design system to ensure consistency across the portal.
-
-### User Research
-Conducted extensive user research with correspondents to understand their pain points.
-
-### Implementation
-The new ticketing system was built with modern UX patterns and improved usability.
-
-### Results
-- 95% reduction in manual ticket processing
-- Improved user satisfaction scores
-- Streamlined workflow for correspondents
+<SyncedCarouselAccordion
+  images={[
+    {
+      src: "/cs1/1.jpg",
+      alt: "Pain points 1-2: Redundant navigation, Clarity issues"
+    },
+    {
+      src: "/cs1/2.jpg",
+      alt: "Pain points 3-4: Required retention of information, Unclear read-only fields"
+    },
+    {
+      src: "/cs1/3.jpg",
+      alt: "Pain point 5: Irrelevant data"
+    }
+  ]}
+  accordionItems={[
+    {
+      value: "item-1",
+      trigger: "1. Redundant navigation",
+      content: "Tabbed navigation was unnecessary due to functionality already in the new Chase Investor Portal."
+    },
+    {
+      value: "item-2",
+      trigger: "2. Clarity issues",
+      content: "Sorting and filtering actions on the table lacked clarity."
+    },
+    {
+      value: "item-3",
+      trigger: "3. Required retention of information",
+      content: "Loan details required navigating to a new screen, which didn't retain information from the original view, hindering understanding of ticket status."
+    },
+    {
+      value: "item-4",
+      trigger: "4. Unclear read-only fields",
+      content: "Request details were displayed in a non-editable format, making it unclear that fields were uneditable—a poor design choice."
+    },
+    {
+      value: "item-5",
+      trigger: "5. Irrelevant data",
+      content: "Redundant values and unnecessary data points persist, detracting from stakeholder relevance."
+    }
+  ]}
+  mapping={{
+    0: [0, 1],
+    1: [2, 3],
+    2: [4]
+  }}
+/>
 
 </PasswordSection>

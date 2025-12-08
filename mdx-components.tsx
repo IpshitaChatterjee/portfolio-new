@@ -9,6 +9,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
+import { SyncedCarouselAccordion } from '@/components/ui/synced-carousel-accordion'
 import { slugify } from '@/lib/utils'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -19,6 +27,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+    SyncedCarouselAccordion,
     h2: ({ children, ...props }: ComponentPropsWithoutRef<'h2'>) => {
       const slug = slugify(children as string)
       return <h2 id={slug} {...props}>{children}</h2>
