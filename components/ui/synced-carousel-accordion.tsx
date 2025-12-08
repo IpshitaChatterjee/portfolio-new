@@ -44,12 +44,14 @@ export function SyncedCarouselAccordion({
 }: SyncedCarouselAccordionProps) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
     if (!api) {
       return
     }
 
+    setCount(api.scrollSnapList().length)
     setCurrent(api.selectedScrollSnap())
 
     api.on('select', () => {
@@ -62,19 +64,27 @@ export function SyncedCarouselAccordion({
 
   return (
     <div className="w-full space-y-6">
-      <Carousel setApi={setApi} className="w-full">
-        <CarouselContent>
-          {images.map((image, index) => (
-            <CarouselItem key={index} className="w-full">
-              <div className="w-full">
-                <ImageModal src={image.src} alt={image.alt} caption="" />
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+      <div className="w-full">
+        <Carousel setApi={setApi} className="w-full">
+          <CarouselContent>
+            {images.map((image, index) => (
+              <CarouselItem key={index} className="w-full">
+                <div className="w-full">
+                  <ImageModal src={image.src} alt={image.alt} caption="" />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+        
+        {count > 0 && (
+          <div className="text-center text-sm text-muted-foreground">
+            Slide {current + 1} of {count}
+          </div>
+        )}
+      </div>
 
       <Accordion type="single" collapsible className="w-full">
         {accordionItems.map((item, index) => {
