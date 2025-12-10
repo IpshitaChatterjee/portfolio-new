@@ -38,7 +38,7 @@ export function PasswordSection({ children }: PasswordSectionProps) {
       <div className="relative">
         {/* Fading content that becomes clear when authenticated */}
         <div className="relative z-0">
-          <div className="text-white mb-4">
+          <div className="text-zinc-900 dark:text-zinc-100 mb-4">
             Through stakeholder interviews, we identified key pain points in the existing system and developed targeted solutions to improve the overall experience for Correspondents.
           </div>
         </div>
