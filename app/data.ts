@@ -41,6 +41,14 @@ export const PROJECTS: Project[] = [
     id: 'project1',
   },
   {
+    name: 'Kitchen stories',
+    description: 'A lightweight system to make weekly cooking easier.',
+    link: '/blog/kitchen-stories',
+    blogLink: 'https://www.behance.net/gallery/203789889/Kitchen-Stories-Redesign-gamified-cooking-experience',
+    video: '/kitchen-stories-thumb.jpg',
+    id: 'project3',
+  },
+  {
     name: 'Chase Investor Portal - Help requests',
     description: 'Helping Correspondents raise tickets.',
     link: 'https://motion-primitives.com/',
@@ -88,7 +96,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     description: 'iOS development for LEX, a cross-platform ed-tech application.',
   },
 ]
-
+/*
 export const BLOG_POSTS: BlogPost[] = [
   {
     title: 'Exploring the Intersection of Design, AI, and Design Engineering',
@@ -117,7 +125,7 @@ export const BLOG_POSTS: BlogPost[] = [
     uid: 'blog-4',
   },
 ]
-
+*/
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
