@@ -8,6 +8,15 @@ type Project = {
   requiresPassword?: boolean
 }
 
+type VibeProject = {
+  name: string
+  description: string
+  link: string
+  blogLink: string
+  video: string
+  id: string
+}
+
 type WorkExperience = {
   company: string
   title: string
@@ -94,6 +103,25 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: 'https://www.infosys.com/',
     id: 'work4',
     description: 'iOS development for LEX, a cross-platform ed-tech application.',
+  },
+]
+
+export const VIBE_PROJECTS: VibeProject[] = [
+  {
+    name: 'An AI digest to catch me up on everything',
+    description: '',
+    link: 'https://ninth-meta-62220112.figma.site/',
+    blogLink: 'https://ninth-meta-62220112.figma.site/',
+    video: '',
+    id: 'vibe-1',
+  },
+  {
+    name: 'An obisidian like personalised note-taking system',
+    description: '',
+    link: 'https://v0-digital-garden-psi.vercel.app/',
+    blogLink: 'https://v0-digital-garden-psi.vercel.app/',
+    video: '',
+    id: 'vibe-2',
   },
 ]
 

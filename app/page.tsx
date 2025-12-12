@@ -13,6 +13,7 @@ import {
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
+  VIBE_PROJECTS,
 } from './data'
 
 const VARIANTS_CONTAINER = {
@@ -186,6 +187,43 @@ export default function Personal() {
             </div>
           ))}
         </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Currently vibe coding</h3>
+        <ul className="space-y-3">
+          {VIBE_PROJECTS.map((project) => (
+            <li key={project.id}>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-xl bg-zinc-100 px-4 py-3 text-zinc-900 transition-colors duration-200 hover:bg-zinc-200 dark:bg-zinc-900/80 dark:text-zinc-50 dark:hover:bg-zinc-800"
+              >
+                <span className="font-medium">{project.name}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              </a>
+            </li>
+          ))}
+        </ul>
       </motion.section>
 
       <motion.section
