@@ -49,14 +49,14 @@ export const PROJECTS: Project[] = [
     video: '/broadband-labels-hero.jpg',
     id: 'project1',
   },
-  {
-    name: 'Kitchen stories',
-    description: 'A lightweight system to make weekly cooking easier.',
-    link: '/blog/kitchen-stories',
-    blogLink: 'https://www.behance.net/gallery/203789889/Kitchen-Stories-Redesign-gamified-cooking-experience',
-    video: '/kitchen-stories-thumb.jpg',
-    id: 'project3',
-  },
+  // {
+  //   name: 'Kitchen stories',
+  //   description: 'A lightweight system to make weekly cooking easier.',
+  //   link: '/blog/kitchen-stories',
+  //   blogLink: 'https://www.behance.net/gallery/203789889/Kitchen-Stories-Redesign-gamified-cooking-experience',
+  //   video: '/kitchen-stories-thumb.jpg',
+  //   id: 'project3',
+  // },
   {
     name: 'Chase Investor Portal - Help requests',
     description: 'Helping Correspondents raise tickets.',
