@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
     description: 'Helping Correspondents raise tickets.',
     link: 'https://motion-primitives.com/',
     blogLink: '/blog/chase-correspondent',
-    video: '/hero.jpg',
+    video: '/cs2/hero.jpg',
     id: 'project2',
   },
 ]
