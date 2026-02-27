@@ -34,30 +34,37 @@ const DAY_LABELS = ["", "Mon", "", "Wed", "", "Fri", ""];
 interface DayData {
   date: string;
   count: number;
+  // level 0–4 as returned by GitHub (matches their own colour thresholds)
+  level: number;
   inRange: boolean;
 }
 
-function buildDayMap(
-  events: { type: string; created_at: string; payload?: { commits?: unknown[] } }[]
-): Record<string, number> {
-  const map: Record<string, number> = {};
-  for (const event of events) {
-    if (event.type === "PushEvent") {
-      const date = event.created_at.slice(0, 10);
-      const n = Array.isArray(event.payload?.commits) ? event.payload.commits.length : 1;
-      map[date] = (map[date] || 0) + n;
-    }
+// Fetch full contribution history from the GitHub profile calendar.
+// Uses github-contributions-api.jogruber.de which reads the public profile
+// page — returns ALL contributions (public + private) just like GitHub's
+// own heatmap, for the rolling last-12-months window.
+async function fetchContributions(): Promise<
+  Record<string, { count: number; level: number }>
+> {
+  const r = await fetch(
+    `https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=last`,
+    { cache: "no-store" }
+  );
+  if (!r.ok) throw new Error("api");
+  const data = await r.json();
+  const map: Record<string, { count: number; level: number }> = {};
+  for (const c of data.contributions as { date: string; count: number; level: number }[]) {
+    map[c.date] = { count: c.count, level: c.level };
   }
   return map;
 }
 
 function buildAlignedGrid(
-  byDate: Record<string, number>,
+  byDate: Record<string, { count: number; level: number }>,
   weeks: number
 ): {
   grid: DayData[][];
   monthLabels: { label: string; weekIndex: number }[];
-  maxCount: number;
 } {
   const nowUtc = new Date();
   const todayStr = nowUtc.toISOString().slice(0, 10);
@@ -78,13 +85,19 @@ function buildAlignedGrid(
     for (let d = 0; d < 7; d++) {
       const dateStr = cur.toISOString().slice(0, 10);
       const inRange = cur >= rangeStart && cur <= today;
-      week.push({ date: dateStr, count: inRange ? byDate[dateStr] || 0 : 0, inRange });
+      const info = inRange ? byDate[dateStr] : undefined;
+      week.push({
+        date: dateStr,
+        count: info?.count ?? 0,
+        level: info?.level ?? 0,
+        inRange,
+      });
       cur.setUTCDate(cur.getUTCDate() + 1);
     }
     grid.push(week);
   }
 
-  // Month labels: one per calendar month, at the first week containing an in-range day
+  // Month labels: one per calendar month at the first in-range week
   const monthLabels: { label: string; weekIndex: number }[] = [];
   let lastMonth = -1;
   grid.forEach((week, wi) => {
@@ -103,27 +116,12 @@ function buildAlignedGrid(
     }
   });
 
-  const maxCount = Math.max(...grid.flat().map((d) => d.count), 1);
-  return { grid, monthLabels, maxCount };
-}
-
-// Fetch a single page gracefully (returns [] on failure)
-async function fetchPage(page: number) {
-  try {
-    const r = await fetch(
-      `https://api.github.com/users/${USERNAME}/events/public?per_page=100&page=${page}`,
-      { headers: { Accept: "application/vnd.github+json" }, cache: "no-store" }
-    );
-    return r.ok ? r.json() : [];
-  } catch {
-    return [];
-  }
+  return { grid, monthLabels };
 }
 
 export function GitHubCard({ className = "" }: { className?: string }) {
   const [grid, setGrid] = useState<DayData[][]>([]);
   const [monthLabels, setMonthLabels] = useState<{ label: string; weekIndex: number }[]>([]);
-  const [maxCount, setMaxCount] = useState(1);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
   const [isDark, setIsDark] = useState(true);
@@ -141,18 +139,14 @@ export function GitHubCard({ className = "" }: { className?: string }) {
     return () => observer.disconnect();
   }, []);
 
-  // Fetch up to 3 pages (300 events) for more complete commit history
+  // Fetch full contribution history from the profile calendar API
   useEffect(() => {
     async function load() {
       try {
-        const pages = await Promise.all([1, 2, 3].map(fetchPage));
-        const events = pages.flat();
-        if (!events.length) throw new Error("no data");
-        const byDate = buildDayMap(events);
-        const { grid: g, monthLabels: ml, maxCount: mc } = buildAlignedGrid(byDate, WEEKS);
+        const byDate = await fetchContributions();
+        const { grid: g, monthLabels: ml } = buildAlignedGrid(byDate, WEEKS);
         setGrid(g);
         setMonthLabels(ml);
-        setMaxCount(mc);
       } catch {
         setFailed(true);
       } finally {
@@ -164,13 +158,13 @@ export function GitHubCard({ className = "" }: { className?: string }) {
 
   const pal = isDark ? DARK : LIGHT;
 
-  function getColor(count: number, inRange: boolean): string {
+  // Use GitHub's own level (0–4) for colour — exactly matches their heatmap
+  function getColor(level: number, inRange: boolean): string {
     if (!inRange) return "transparent";
-    if (count === 0) return pal.empty;
-    const i = count / maxCount;
-    if (i < 0.25) return pal.l1;
-    if (i < 0.5) return pal.l2;
-    if (i < 0.75) return pal.l3;
+    if (level === 0) return pal.empty;
+    if (level === 1) return pal.l1;
+    if (level === 2) return pal.l2;
+    if (level === 3) return pal.l3;
     return pal.l4;
   }
 
@@ -260,14 +254,14 @@ export function GitHubCard({ className = "" }: { className?: string }) {
                     key={di}
                     title={
                       day.inRange && day.date
-                        ? `${day.date}: ${day.count} commit${day.count !== 1 ? "s" : ""}`
+                        ? `${day.date}: ${day.count} contribution${day.count !== 1 ? "s" : ""}`
                         : undefined
                     }
                     style={{
                       width: CELL,
                       height: CELL,
                       borderRadius: 2,
-                      background: getColor(day.count, day.inRange),
+                      background: getColor(day.level, day.inRange),
                       border: day.inRange ? `1px solid ${pal.cellBorder}` : "none",
                       flexShrink: 0,
                     }}
