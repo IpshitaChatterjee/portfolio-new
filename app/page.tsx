@@ -1,0 +1,670 @@
+import React from "react";
+
+/* ─────────────────────────────────────────────
+   DATA — swap in your real content here
+───────────────────────────────────────────── */
+const PERSON = {
+  name: "Your Name",
+  initials: "YN",
+  role: "Product Design Engineer",
+  tagline: "Crafting interfaces\nthat think.",
+  bio: "I build at the intersection of design and code — obsessing over the details that make products feel inevitable. Previously at Figma, Vercel.",
+  location: "San Francisco, CA",
+  email: "hello@yourname.com",
+  currentWork: "a design token sync tool for multi-brand systems",
+  currentSince: "Jan 2025",
+};
+
+const CASE_STUDIES = [
+  {
+    id: "01",
+    title: "Redesigning Onboarding at Scale",
+    category: "Product Design",
+    year: "2024",
+    description: "Reduced drop-off by 34% through progressive disclosure patterns.",
+    href: "#",
+  },
+  {
+    id: "02",
+    title: "Design System for Fintech",
+    category: "Design Systems",
+    year: "2023",
+    description: "Built a component library serving 12 teams and 200+ engineers.",
+    href: "#",
+  },
+  {
+    id: "03",
+    title: "Real-time Collaboration Tools",
+    category: "UX Research",
+    year: "2023",
+    description: "From 0→1 research to shipped feature for 50k+ users.",
+    href: "#",
+  },
+];
+
+const ARTICLES = [
+  {
+    title: "The Art of Invisible UX",
+    publication: "Medium",
+    readTime: "8 min",
+    date: "Jan 2025",
+    href: "#",
+  },
+  {
+    title: "Why Design Systems Fail",
+    publication: "Substack",
+    readTime: "5 min",
+    date: "Dec 2024",
+    href: "#",
+  },
+  {
+    title: "Spatial Computing & the Future of Interface",
+    publication: "Personal Blog",
+    readTime: "12 min",
+    date: "Oct 2024",
+    href: "#",
+  },
+];
+
+const REPOS = [
+  {
+    name: "design-tokens-sync",
+    description: "Sync design tokens across Figma, Style Dictionary, and CSS.",
+    stars: "234",
+    lang: "TypeScript",
+    langColor: "#3178c6",
+    href: "#",
+  },
+  {
+    name: "motion-primitives",
+    description: "Composable animation components for React applications.",
+    stars: "891",
+    lang: "React/TSX",
+    langColor: "#61dafb",
+    href: "#",
+  },
+  {
+    name: "palette-engine",
+    description: "Generate WCAG-compliant color palettes from a single seed.",
+    stars: "156",
+    lang: "Rust/WASM",
+    langColor: "#dea584",
+    href: "#",
+  },
+];
+
+const STACK = {
+  Design: ["Figma", "Framer", "Spline", "Rive"],
+  Development: ["React", "Next.js", "TypeScript", "Rust"],
+  Tools: ["Vercel", "Linear", "Raycast", "Arc"],
+};
+
+const LINKS = [
+  { label: "GitHub", href: "#", icon: GitHubIcon },
+  { label: "Twitter / X", href: "#", icon: XIcon },
+  { label: "LinkedIn", href: "#", icon: LinkedInIcon },
+  { label: "Read.cv", href: "#", icon: CvIcon },
+];
+
+/* ─────────────────────────────────────────────
+   ICONS
+───────────────────────────────────────────── */
+function GitHubIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+    </svg>
+  );
+}
+
+function XIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+function LinkedInIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+function CvIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+  );
+}
+
+function ArrowUpRight({ size = 14 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M7 17L17 7M17 7H7M17 7v10" />
+    </svg>
+  );
+}
+
+function MapPin({ size = 12 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function StarIcon({ size = 12 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   PAGE
+───────────────────────────────────────────── */
+export default function Portfolio() {
+  return (
+    <main className="min-h-screen bg-black py-6 md:py-10">
+      <div className="bento-grid">
+
+        {/* ── Hero ── */}
+        <div className="bento-card card-hero dot-pattern" style={{ minHeight: 380 }}>
+          {/* Ambient glow */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "80%",
+              height: "60%",
+              background:
+                "radial-gradient(ellipse at top, rgba(0,112,243,0.07) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+
+          <div className="relative z-10 flex flex-col justify-between h-full" style={{ minHeight: 330 }}>
+            {/* Top */}
+            <div>
+              <span className="label">Product Design Engineer</span>
+
+              <h1
+                style={{
+                  fontFamily: "var(--font-instrument-serif)",
+                  fontStyle: "italic",
+                  fontSize: "clamp(36px, 5vw, 58px)",
+                  lineHeight: 1.08,
+                  letterSpacing: "-0.02em",
+                  color: "#ededed",
+                  marginTop: 20,
+                  marginBottom: 20,
+                  maxWidth: 560,
+                }}
+              >
+                {PERSON.tagline.split("\n").map((line, i) => (
+                  <React.Fragment key={i}>
+                    {line}
+                    {i < PERSON.tagline.split("\n").length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </h1>
+
+              <p
+                style={{
+                  fontFamily: "var(--font-geist-sans)",
+                  fontSize: 14,
+                  lineHeight: 1.65,
+                  color: "#888",
+                  maxWidth: 440,
+                }}
+              >
+                {PERSON.bio}
+              </p>
+            </div>
+
+            {/* Bottom */}
+            <div className="flex items-center justify-between flex-wrap gap-3 mt-8">
+              <div className="flex items-center gap-4">
+                <a href={`mailto:${PERSON.email}`} className="cta-button">
+                  Get in touch <ArrowUpRight size={12} />
+                </a>
+                <a href="#" className="secondary-button">
+                  View résumé
+                </a>
+              </div>
+              <div
+                className="flex items-center gap-1.5"
+                style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, color: "#555" }}
+              >
+                <MapPin size={11} />
+                {PERSON.location}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Status ── */}
+        <div className="bento-card card-status" style={{ minHeight: 180 }}>
+          <span className="label">Status</span>
+          <div className="mt-4 flex items-center gap-2.5">
+            <div className="status-dot" />
+            <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 13, color: "#ededed" }}>
+              Available for work
+            </span>
+          </div>
+
+          <div className="mt-6" style={{ fontFamily: "var(--font-geist-sans)", fontSize: 12, color: "#555", lineHeight: 1.6 }}>
+            Open to
+          </div>
+          <div className="flex flex-col gap-1.5 mt-2">
+            {["Freelance", "Full-time", "Advisory"].map((type) => (
+              <div key={type} className="flex items-center gap-2">
+                <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#1f1f1f" }} />
+                <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 12, color: "#888" }}>
+                  {type}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="mt-5"
+            style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "#444" }}
+          >
+            ↩ responds within 24h
+          </div>
+        </div>
+
+        {/* ── Links ── */}
+        <div className="bento-card card-links" style={{ minHeight: 180 }}>
+          <span className="label">Find me</span>
+          <div className="flex flex-col gap-1 mt-4">
+            {LINKS.map(({ label, href, icon: Icon }) => (
+              <a key={label} href={href} className="social-link" target="_blank" rel="noopener noreferrer">
+                <Icon size={15} />
+                <span>{label}</span>
+                <ArrowUpRight size={11} />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Now ── */}
+        <div className="bento-card card-now" style={{ minHeight: 160 }}>
+          <div className="flex items-start justify-between">
+            <span className="label">Now</span>
+            <span
+              style={{
+                fontFamily: "var(--font-geist-mono)",
+                fontSize: 10,
+                color: "#444",
+                background: "#111",
+                border: "1px solid #1e1e1e",
+                borderRadius: 4,
+                padding: "2px 7px",
+              }}
+            >
+              since {PERSON.currentSince}
+            </span>
+          </div>
+          <p
+            style={{
+              fontFamily: "var(--font-instrument-serif)",
+              fontStyle: "italic",
+              fontSize: 20,
+              lineHeight: 1.35,
+              color: "#bbb",
+              marginTop: 14,
+            }}
+          >
+            Building {PERSON.currentWork}.
+          </p>
+        </div>
+
+        {/* ── Case Studies ── */}
+        <div className="bento-card card-cases" style={{ minHeight: 400 }}>
+          <div className="flex items-center justify-between">
+            <span className="label">Case Studies</span>
+            <a
+              href="#"
+              style={{
+                fontFamily: "var(--font-geist-mono)",
+                fontSize: 10,
+                color: "#555",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              All work <ArrowUpRight size={10} />
+            </a>
+          </div>
+
+          <div className="mt-2">
+            {CASE_STUDIES.map((cs) => (
+              <a key={cs.id} href={cs.href} className="case-entry" style={{ display: "block", textDecoration: "none" }}>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-geist-mono)",
+                        fontSize: 11,
+                        color: "#333",
+                        marginBottom: 8,
+                      }}
+                    >
+                      {cs.id}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-geist-sans)",
+                        fontSize: 15,
+                        fontWeight: 500,
+                        color: "#d0d0d0",
+                        lineHeight: 1.3,
+                        marginBottom: 6,
+                      }}
+                    >
+                      {cs.title}
+                    </div>
+                    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-geist-mono)",
+                          fontSize: 10,
+                          color: "#555",
+                          background: "#111",
+                          border: "1px solid #1e1e1e",
+                          borderRadius: 4,
+                          padding: "2px 7px",
+                        }}
+                      >
+                        {cs.category}
+                      </span>
+                      <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "#444" }}>
+                        {cs.year}
+                      </span>
+                    </div>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-geist-sans)",
+                        fontSize: 12,
+                        color: "#555",
+                        marginTop: 8,
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {cs.description}
+                    </p>
+                  </div>
+                  <div className="case-arrow mt-1 flex-shrink-0">
+                    <ArrowUpRight size={14} />
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Writing ── */}
+        <div className="bento-card card-writing" style={{ minHeight: 200 }}>
+          <div className="flex items-center justify-between">
+            <span className="label">Writing</span>
+            <a
+              href="#"
+              style={{
+                fontFamily: "var(--font-geist-mono)",
+                fontSize: 10,
+                color: "#555",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              All articles <ArrowUpRight size={10} />
+            </a>
+          </div>
+
+          <div className="mt-3">
+            {ARTICLES.map((article) => (
+              <a
+                key={article.title}
+                href={article.href}
+                className="writing-entry"
+                style={{ display: "block", textDecoration: "none" }}
+              >
+                <div
+                  style={{
+                    fontFamily: "var(--font-geist-sans)",
+                    fontSize: 13,
+                    fontWeight: 450,
+                    color: "#ccc",
+                    lineHeight: 1.4,
+                    marginBottom: 4,
+                  }}
+                >
+                  {article.title}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: 10,
+                    color: "#444",
+                    display: "flex",
+                    gap: 8,
+                  }}
+                >
+                  <span>{article.publication}</span>
+                  <span>·</span>
+                  <span>{article.readTime}</span>
+                  <span>·</span>
+                  <span>{article.date}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Coding Projects ── */}
+        <div className="bento-card card-coding" style={{ minHeight: 200 }}>
+          <div className="flex items-center justify-between">
+            <span className="label">Projects</span>
+            <a
+              href="#"
+              style={{
+                fontFamily: "var(--font-geist-mono)",
+                fontSize: 10,
+                color: "#555",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              GitHub <ArrowUpRight size={10} />
+            </a>
+          </div>
+
+          <div className="flex flex-col gap-2 mt-3">
+            {REPOS.map((repo) => (
+              <a key={repo.name} href={repo.href} className="repo-card" style={{ textDecoration: "none" }}>
+                <div className="flex items-start justify-between gap-2">
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-geist-mono)",
+                        fontSize: 12,
+                        color: "#0070f3",
+                        marginBottom: 3,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {repo.name}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-geist-sans)",
+                        fontSize: 11,
+                        color: "#555",
+                        lineHeight: 1.4,
+                        marginBottom: 6,
+                      }}
+                    >
+                      {repo.description}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1" style={{ color: "#555" }}>
+                        <StarIcon size={10} />
+                        <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10 }}>
+                          {repo.stars}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div
+                          style={{
+                            width: 8,
+                            height: 8,
+                            borderRadius: "50%",
+                            background: repo.langColor,
+                          }}
+                        />
+                        <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "#555" }}>
+                          {repo.lang}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <ArrowUpRight size={12} />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Stack ── */}
+        <div className="bento-card card-stack" style={{ minHeight: 180 }}>
+          <span className="label">Stack</span>
+          <div className="flex flex-col gap-4 mt-4">
+            {Object.entries(STACK).map(([category, tools]) => (
+              <div key={category}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: 9,
+                    color: "#444",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    marginBottom: 8,
+                  }}
+                >
+                  {category}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {tools.map((tool) => (
+                    <span key={tool} className="stack-tag">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Contact ── */}
+        <div
+          className="bento-card card-contact"
+          style={{
+            minHeight: 180,
+            background: "linear-gradient(135deg, #080808 0%, #0a0a10 100%)",
+          }}
+        >
+          {/* Subtle blue glow in contact card */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              width: "60%",
+              height: "60%",
+              background:
+                "radial-gradient(ellipse at bottom right, rgba(0,112,243,0.06) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+
+          <div className="relative z-10 flex flex-col justify-between h-full" style={{ minHeight: 130 }}>
+            <div>
+              <span className="label">Let&apos;s work together</span>
+              <p
+                style={{
+                  fontFamily: "var(--font-instrument-serif)",
+                  fontStyle: "italic",
+                  fontSize: 22,
+                  lineHeight: 1.3,
+                  color: "#bbb",
+                  marginTop: 12,
+                }}
+              >
+                Have a project in mind?
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-geist-sans)",
+                  fontSize: 12,
+                  color: "#555",
+                  marginTop: 8,
+                  lineHeight: 1.5,
+                }}
+              >
+                I&apos;m always open to discussing design challenges, new projects, or opportunities to be part of your vision.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 mt-6">
+              <a href={`mailto:${PERSON.email}`} className="cta-button">
+                Say hello <ArrowUpRight size={12} />
+              </a>
+              <span
+                style={{
+                  fontFamily: "var(--font-geist-mono)",
+                  fontSize: 11,
+                  color: "#333",
+                }}
+              >
+                {PERSON.email}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div
+        className="text-center mt-8 pb-6"
+        style={{
+          fontFamily: "var(--font-geist-mono)",
+          fontSize: 10,
+          color: "#333",
+          letterSpacing: "0.08em",
+        }}
+      >
+        {PERSON.name} · {new Date().getFullYear()} · Built with Next.js
+      </div>
+    </main>
+  );
+}

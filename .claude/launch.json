@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "/usr/local/bin/node",
+      "runtimeArgs": ["/Users/ipshita/Desktop/portfolio/node_modules/.bin/next", "dev", "--port", "3001"],
+      "cwd": "/Users/ipshita/Desktop/portfolio",
+      "port": 3001
+    }
+  ]
+}
