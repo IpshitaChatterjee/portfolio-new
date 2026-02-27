@@ -174,81 +174,48 @@ export default function Portfolio() {
     <main className="min-h-screen bg-black py-6 md:py-10">
       <div className="bento-grid">
 
-        {/* ── Hero ── */}
-        <div className="bento-card card-hero dot-pattern" style={{ minHeight: 380 }}>
-          {/* Ambient glow */}
-          <div
-            aria-hidden="true"
+        {/* ── About Me ── */}
+        <div className="bento-card card-hero" style={{ minHeight: 380, padding: 0 }}>
+          {/* Full-bleed photo */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/avatar.jpg"
+            alt="Ipshita"
             style={{
-              position: "absolute",
-              top: 0,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "80%",
-              height: "60%",
-              background:
-                "radial-gradient(ellipse at top, rgba(0,112,243,0.07) 0%, transparent 70%)",
-              pointerEvents: "none",
+              width: "100%",
+              aspectRatio: "4 / 3",
+              objectFit: "cover",
+              objectPosition: "center 15%",
+              display: "block",
             }}
           />
 
-          <div className="relative z-10 flex flex-col justify-between h-full" style={{ minHeight: 330 }}>
-            {/* Top */}
-            <div>
-              <span className="label">Product Design Engineer</span>
-
-              <h1
-                style={{
-                  fontFamily: "var(--font-instrument-serif)",
-                  fontStyle: "italic",
-                  fontSize: "clamp(36px, 5vw, 58px)",
-                  lineHeight: 1.08,
-                  letterSpacing: "-0.02em",
-                  color: "#ededed",
-                  marginTop: 20,
-                  marginBottom: 20,
-                  maxWidth: 560,
-                }}
-              >
-                {PERSON.tagline.split("\n").map((line, i) => (
-                  <React.Fragment key={i}>
-                    {line}
-                    {i < PERSON.tagline.split("\n").length - 1 && <br />}
-                  </React.Fragment>
-                ))}
-              </h1>
-
-              <p
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                  fontSize: 14,
-                  lineHeight: 1.65,
-                  color: "#888",
-                  maxWidth: 440,
-                }}
-              >
-                {PERSON.bio}
-              </p>
-            </div>
-
-            {/* Bottom */}
-            <div className="flex items-center justify-between flex-wrap gap-3 mt-8">
-              <div className="flex items-center gap-4">
-                <a href={`mailto:${PERSON.email}`} className="cta-button">
-                  Get in touch <ArrowUpRight size={12} />
-                </a>
-                <a href="#" className="secondary-button">
-                  View résumé
-                </a>
-              </div>
-              <div
-                className="flex items-center gap-1.5"
-                style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, color: "#555" }}
-              >
-                <MapPin size={11} />
-                {PERSON.location}
-              </div>
-            </div>
+          {/* Text content */}
+          <div style={{ padding: "20px 24px 24px" }}>
+            <span className="label">About</span>
+            <h2
+              style={{
+                fontFamily: "var(--font-instrument-serif)",
+                fontStyle: "italic",
+                fontSize: 28,
+                lineHeight: 1.2,
+                color: "#ededed",
+                marginTop: 10,
+                marginBottom: 12,
+              }}
+            >
+              Ipshita
+            </h2>
+            <p
+              style={{
+                fontFamily: "var(--font-geist-sans)",
+                fontSize: 13,
+                lineHeight: 1.7,
+                color: "#888",
+              }}
+            >
+              Product designer with 7 years of experience, currently working at JP Morgan Chase. If you&apos;re looking for someone who can hold their own in a strategy meeting and then jump into Figma or code to bring ideas to life, let&apos;s talk.
+            </p>
           </div>
         </div>
 
