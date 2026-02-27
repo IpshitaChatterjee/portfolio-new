@@ -81,10 +81,9 @@ export function DirectionAwareCard({
       {/* Hover dark overlay */}
       <div className="dac-overlay" aria-hidden="true" />
 
-      {/* At-rest label — top-left */}
+      {/* At-rest label — top-right only */}
       <div className="dac-label" aria-hidden="true">
-        <span className="dac-label-cat">{label}</span>
-        <span className="dac-label-tag">Work</span>
+        <span className="dac-label-tag">Case Study</span>
       </div>
 
       {/* Hover content — fades in with direction-aware translate */}

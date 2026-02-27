@@ -172,6 +172,7 @@ html.light .navbar-logo {
 @media (min-width: 1100px) {
   .bento-grid {
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 260px 200px 180px 260px auto;
     padding: 24px;
   }
 
@@ -244,27 +245,21 @@ html.light .navbar-logo {
 /* At-rest label strip */
 .dac-label {
   position: absolute;
-  top: 20px;
+  top: 18px;
   left: 20px;
   right: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   z-index: 20;
   pointer-events: none;
 }
-.dac-label-cat {
-  font-family: var(--font-geist-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-}
 .dac-label-tag {
-  font-family: var(--font-instrument-serif);
-  font-style: italic;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.35);
+  font-family: var(--font-geist-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* Hover content — direction-aware text reveal */
