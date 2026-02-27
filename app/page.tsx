@@ -1,5 +1,6 @@
 import React from "react";
 import { DirectionAwareCard } from "./components/DirectionAwareCard";
+import { GitHubCard } from "./components/GitHubCard";
 
 /* ─────────────────────────────────────────────
    DATA — swap in your real content here
@@ -372,6 +373,9 @@ export default function Portfolio() {
             ))}
           </div>
         </div>
+
+        {/* ── GitHub Activity ── */}
+        <GitHubCard className="card-github" />
 
         {/* ── Contact ── */}
         <div

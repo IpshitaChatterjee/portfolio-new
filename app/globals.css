@@ -181,7 +181,8 @@ html.light .navbar-logo {
   .card-writing { grid-area: 3 / 3 / 4 / 5; }
   .card-experience { grid-area: 4 / 1 / 5 / 3; }
   .card-work-2  { grid-area: 4 / 3 / 5 / 5; }
-  .card-contact { grid-area: 5 / 1 / 6 / 5; }
+  .card-github  { grid-area: 5 / 1 / 6 / 5; }
+  .card-contact { grid-area: 6 / 1 / 7 / 5; }
 }
 
 /* ── Direction-Aware Card (Aceternity style) ── */
