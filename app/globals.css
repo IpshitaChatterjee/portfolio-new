@@ -605,3 +605,210 @@ html.light .navbar-logo {
   background: rgba(0, 112, 243, 0.2);
   color: var(--text);
 }
+
+/* ── Case study page ── */
+.cs-header {
+  padding: 48px 24px 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.cs-title {
+  font-family: var(--font-instrument-serif);
+  font-style: italic;
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 1.05;
+  color: var(--text);
+  margin: 0 0 20px;
+}
+
+.cs-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-family: var(--font-geist-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cs-section {
+  padding: 36px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-top: 1px solid var(--border);
+}
+
+.cs-section-label {
+  font-family: var(--font-geist-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  width: 160px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.cs-section-body {
+  font-family: var(--font-geist-sans);
+  font-size: 15px;
+  color: var(--text-sub);
+  line-height: 1.75;
+  max-width: 680px;
+}
+
+.cs-image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 700px) {
+  .cs-image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cs-section {
+    padding: 28px 16px;
+  }
+
+  .cs-header {
+    padding: 32px 16px 24px;
+  }
+
+  .cs-section-label {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .cs-section > div {
+    flex-direction: column !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-image-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs-image-cell {
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: zoom-in;
+  position: relative;
+}
+
+.cs-image-cell-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cs-image-cell:hover .cs-image-cell-inner {
+  transform: scale(1.04);
+}
+
+/* ── Back button ── */
+.cs-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-geist-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.cs-back-btn:hover {
+  color: var(--text);
+}
+
+/* ── Lightbox ── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lbFadeIn 0.15s ease-out both;
+}
+
+@keyframes lbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.lightbox-img {
+  max-width: min(90vw, 1200px);
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+  animation: lbImgIn 0.2s ease-out both;
+  overflow: hidden;
+}
+
+@keyframes lbImgIn {
+  from { transform: scale(0.96); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-family: var(--font-geist-mono);
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  line-height: 1;
+  transition: color 0.15s ease;
+  z-index: 201;
+}
+
+.lightbox-close:hover {
+  color: #fff;
+}
+
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  transition: background 0.15s ease, color 0.15s ease;
+  z-index: 201;
+}
+
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.lightbox-nav-prev { left: 20px; }
+.lightbox-nav-next { right: 20px; }

@@ -211,7 +211,7 @@ export default function Portfolio() {
           label="Product Design · 2024"
           title="Redesigning Onboarding at Scale"
           description="Reduced drop-off by 34% through progressive disclosure and behavioural nudges."
-          href="#"
+          href="/case-study/onboarding-at-scale"
         />
 
         {/* ── Writing ── */}
@@ -281,7 +281,7 @@ export default function Portfolio() {
           label="Design Systems · 2023"
           title="Design System for Fintech"
           description="Built a component library serving 12 teams and 200+ engineers across 4 products."
-          href="#"
+          href="/case-study/design-system-fintech"
         />
 
         {/* ── Experience ── */}
