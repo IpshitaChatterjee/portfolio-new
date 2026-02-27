@@ -184,17 +184,129 @@ html.light .navbar-logo {
   .card-contact { grid-area: 5 / 1 / 6 / 5; }
 }
 
-/* ── Direction-Aware Card ── */
+/* ── Direction-Aware Card (Aceternity style) ── */
 .dac-card {
   padding: 0 !important;
   cursor: pointer;
   min-height: 220px;
+  background: #080808 !important;
 }
 
 .dac-card:hover {
-  border-color: var(--border-mid);
+  border-color: rgba(255, 255, 255, 0.12);
   transform: translateY(-1px);
-  box-shadow: 0 0 0 1px var(--border-mid), 0 8px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Image wrapper clips the shifted image */
+.dac-img-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.dac-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.15);
+  transition: transform 0.2s ease-out;
+  display: block;
+}
+
+/* Image nudges in the direction of entry */
+.dac-card.dac-hovered.dac-dir-top    .dac-img { transform: scale(1.15) translateY(20px); }
+.dac-card.dac-hovered.dac-dir-bottom .dac-img { transform: scale(1.15) translateY(-20px); }
+.dac-card.dac-hovered.dac-dir-left   .dac-img { transform: scale(1.15) translateX(20px); }
+.dac-card.dac-hovered.dac-dir-right  .dac-img { transform: scale(1.15) translateX(-20px); }
+
+/* Persistent bottom gradient for label legibility */
+.dac-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Dark overlay — fades in on hover */
+.dac-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+.dac-card.dac-hovered .dac-overlay { opacity: 1; }
+
+/* At-rest label strip */
+.dac-label {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+}
+.dac-label-cat {
+  font-family: var(--font-geist-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+.dac-label-tag {
+  font-family: var(--font-instrument-serif);
+  font-style: italic;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Hover content — direction-aware text reveal */
+.dac-content {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+  right: 22px;
+  z-index: 40;
+  opacity: 0;
+  transform: translate(0, 0);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+  pointer-events: none;
+}
+.dac-card.dac-hovered.dac-dir-top    .dac-content { opacity: 1; transform: translateY(-16px); }
+.dac-card.dac-hovered.dac-dir-bottom .dac-content { opacity: 1; transform: translateY(2px); }
+.dac-card.dac-hovered.dac-dir-left   .dac-content { opacity: 1; transform: translateX(-2px); }
+.dac-card.dac-hovered.dac-dir-right  .dac-content { opacity: 1; transform: translateX(16px); }
+
+.dac-title {
+  font-family: var(--font-instrument-serif);
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.2;
+  color: #ffffff;
+  margin: 0 0 8px;
+}
+.dac-desc {
+  font-family: var(--font-geist-sans);
+  font-size: 12px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 16px;
+}
+.dac-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-geist-sans);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #ffffff;
 }
 
 /* ── Base card ── */

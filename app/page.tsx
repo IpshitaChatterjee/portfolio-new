@@ -237,13 +237,11 @@ export default function Portfolio() {
         {/* ── Work Card 1 ── */}
         <DirectionAwareCard
           className="card-work-1"
-          background="linear-gradient(145deg, #130d07 0%, #2e1a08 45%, #0f0b06 100%)"
-          accentColor="#e07b3c"
+          imageUrl="/chase.png"
           label="Product Design · 2024"
           title="Redesigning Onboarding at Scale"
           description="Reduced drop-off by 34% through progressive disclosure and behavioural nudges."
           href="#"
-          patternStyle="diagonal"
         />
 
         {/* ── Writing ── */}
@@ -309,13 +307,11 @@ export default function Portfolio() {
         {/* ── Work Card 2 ── */}
         <DirectionAwareCard
           className="card-work-2"
-          background="linear-gradient(145deg, #060c17 0%, #0c1f40 50%, #04080f 100%)"
-          accentColor="#4a9eff"
+          imageUrl="/cbm.png"
           label="Design Systems · 2023"
           title="Design System for Fintech"
           description="Built a component library serving 12 teams and 200+ engineers across 4 products."
           href="#"
-          patternStyle="dots"
         />
 
         {/* ── Stack ── */}
