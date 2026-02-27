@@ -219,43 +219,37 @@ export default function Portfolio() {
 
             {/* Status section */}
             <div style={{ borderTop: "1px solid #1a1a1a", marginTop: 20, paddingTop: 16 }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 10 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <div className="status-dot" />
                   <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 12, color: "#ededed" }}>
-                    Available for work
+                    Available for full-time roles in Germany
                   </span>
                 </div>
                 <a
                   href="mailto:ipshita.chatterjee02@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="email-me-btn"
+                  className="cta-button cta-button-sm"
                 >
-                  Email me <ArrowUpRight size={11} />
+                  Say hello <ArrowUpRight size={11} />
                 </a>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#2e2e2e", flexShrink: 0 }} />
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 12 }}>
                 <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 11, color: "#888" }}>
-                  Open to Full-time roles in Germany
+                  See what I&apos;ve been doing on
                 </span>
+                <a href="#" className="social-icon-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+                  <XIcon size={14} />
+                </a>
+                <a href="#" className="social-icon-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                  <GitHubIcon size={14} />
+                </a>
+                <a href="#" className="social-icon-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <LinkedInIcon size={14} />
+                </a>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* ── Links ── */}
-        <div className="bento-card card-links" style={{ minHeight: 180 }}>
-          <span className="label">Find me</span>
-          <div className="flex flex-col gap-1 mt-4">
-            {LINKS.map(({ label, href, icon: Icon }) => (
-              <a key={label} href={href} className="social-link" target="_blank" rel="noopener noreferrer">
-                <Icon size={15} />
-                <span>{label}</span>
-                <ArrowUpRight size={11} />
-              </a>
-            ))}
           </div>
         </div>
 
