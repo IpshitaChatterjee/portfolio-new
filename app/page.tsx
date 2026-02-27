@@ -204,38 +204,6 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* ── Now ── */}
-        <div className="bento-card card-now" style={{ minHeight: 160 }}>
-          <div className="flex items-start justify-between">
-            <span className="label">Now</span>
-            <span
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-                fontSize: 10,
-                color: "var(--text-muted)",
-                background: "var(--bg-subtle)",
-                border: "1px solid var(--border)",
-                borderRadius: 4,
-                padding: "2px 7px",
-              }}
-            >
-              since {PERSON.currentSince}
-            </span>
-          </div>
-          <p
-            style={{
-              fontFamily: "var(--font-instrument-serif)",
-              fontStyle: "italic",
-              fontSize: 20,
-              lineHeight: 1.35,
-              color: "var(--text-sub)",
-              marginTop: 14,
-            }}
-          >
-            Building {PERSON.currentWork}.
-          </p>
-        </div>
-
         {/* ── Work Card 1 ── */}
         <DirectionAwareCard
           className="card-work-1"
