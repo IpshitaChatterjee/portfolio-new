@@ -3,9 +3,38 @@
 @tailwind utilities;
 
 :root {
+  /* ── Fonts ── */
   --font-geist-sans: "Geist Sans", sans-serif;
   --font-geist-mono: "Geist Mono", monospace;
   --font-instrument-serif: "Instrument Serif", Georgia, serif;
+
+  /* ── Dark theme tokens (default) ── */
+  --bg:            #000000;
+  --bg-card:       #0f0f0f;
+  --bg-card-deep:  #080808;
+  --bg-subtle:     #111111;
+  --border:        #1a1a1a;
+  --border-mid:    #2a2a2a;
+  --border-strong: #333333;
+  --text:          #ededed;
+  --text-sub:      #cccccc;
+  --text-muted:    #888888;
+  --text-dim:      #555555;
+}
+
+/* ── Light theme overrides ── */
+html.light {
+  --bg:            #f5f5f5;
+  --bg-card:       #ffffff;
+  --bg-card-deep:  #fafafa;
+  --bg-subtle:     #f0f0f0;
+  --border:        #e8e8e8;
+  --border-mid:    #d0d0d0;
+  --border-strong: #bbbbbb;
+  --text:          #111111;
+  --text-sub:      #333333;
+  --text-muted:    #666666;
+  --text-dim:      #999999;
 }
 
 * {
@@ -19,11 +48,12 @@ html {
 }
 
 body {
-  background: #000000;
-  color: #ededed;
+  background: var(--bg);
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 /* ── Grain overlay ── */
@@ -50,6 +80,77 @@ body {
   70%       { transform: translate(0%, 15%); }
   80%       { transform: translate(3%, 35%); }
   90%       { transform: translate(-10%, 10%); }
+}
+
+/* ── Navbar ── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+html.light .navbar {
+  background: rgba(245, 245, 245, 0.88);
+}
+
+.navbar-logo {
+  height: 28px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.15s ease;
+  cursor: pointer;
+}
+
+html.light .navbar-logo {
+  filter: brightness(0);
+}
+
+.navbar-logo:hover {
+  opacity: 0.65;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-cv-btn {
+  font-size: 12px !important;
+  padding: 5px 12px !important;
+  gap: 6px !important;
+}
+
+.theme-toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border-mid);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
 }
 
 /* ── Bento grid ── */
@@ -85,23 +186,24 @@ body {
 
 /* ── Base card ── */
 .bento-card {
-  background: #0f0f0f;
-  border: 1px solid #1a1a1a;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 24px;
   position: relative;
   overflow: hidden;
   transition:
     border-color 0.25s ease,
+    background 0.2s ease,
     transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.25s ease;
   min-height: 180px;
 }
 
 .bento-card:hover {
-  border-color: #2a2a2a;
+  border-color: var(--border-mid);
   transform: translateY(-1px);
-  box-shadow: 0 0 0 1px #222, 0 8px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 1px var(--border-mid), 0 8px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* ── Card entrance animations ── */
@@ -123,7 +225,7 @@ body {
 
 /* ── Dot grid pattern (hero background) ── */
 .dot-pattern {
-  background-image: radial-gradient(circle, #1e1e1e 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--border-mid) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -133,7 +235,7 @@ body {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #888;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
@@ -159,24 +261,24 @@ body {
   gap: 10px;
   padding: 8px 10px;
   border-radius: 8px;
-  color: #888;
+  color: var(--text-muted);
   font-family: var(--font-geist-sans);
   font-size: 13px;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   text-decoration: none;
   border: 1px solid transparent;
 }
 
 .social-link:hover {
-  background: #161616;
-  color: #ededed;
-  border-color: #222;
+  background: var(--bg-subtle);
+  color: var(--text);
+  border-color: var(--border-mid);
 }
 
 /* ── Case study entry ── */
 .case-entry {
   padding: 18px 0;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--border);
   cursor: pointer;
   transition: opacity 0.15s ease;
   position: relative;
@@ -192,18 +294,18 @@ body {
 
 .case-arrow {
   transition: transform 0.2s ease, color 0.2s ease;
-  color: #888;
+  color: var(--text-muted);
 }
 
 .case-entry:hover .case-arrow {
   transform: translateX(3px);
-  color: #bbb;
+  color: var(--text-sub);
 }
 
 /* ── Writing entry ── */
 .writing-entry {
   padding: 12px 0;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--border);
   cursor: pointer;
   transition: opacity 0.15s ease;
 }
@@ -219,16 +321,16 @@ body {
 /* ── Coding / Repo card ── */
 .repo-card {
   padding: 14px;
-  border: 1px solid #1a1a1a;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #080808;
+  background: var(--bg-card-deep);
   transition: border-color 0.15s ease, background 0.15s ease;
   cursor: pointer;
 }
 
 .repo-card:hover {
-  border-color: #2a2a2a;
-  background: #0d0d0d;
+  border-color: var(--border-mid);
+  background: var(--bg-card);
 }
 
 /* ── Stack tag ── */
@@ -237,18 +339,18 @@ body {
   align-items: center;
   gap: 6px;
   padding: 5px 10px;
-  background: #111;
-  border: 1px solid #1e1e1e;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-family: var(--font-geist-mono);
   font-size: 11px;
-  color: #888;
+  color: var(--text-muted);
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 .stack-tag:hover {
-  border-color: #333;
-  color: #bbb;
+  border-color: var(--border-strong);
+  color: var(--text-sub);
 }
 
 /* ── CTA button ── */
@@ -272,6 +374,13 @@ body {
   transform: translateY(-1px);
 }
 
+/* ── CTA button small variant ── */
+.cta-button-sm {
+  padding: 5px 12px;
+  font-size: 12px;
+  gap: 6px;
+}
+
 /* ── Email me pill ── */
 .email-me-btn {
   display: inline-flex;
@@ -279,26 +388,19 @@ body {
   gap: 5px;
   padding: 4px 10px;
   background: transparent;
-  border: 1px solid #2a2a2a;
+  border: 1px solid var(--border-mid);
   border-radius: 6px;
   font-family: var(--font-geist-sans);
   font-size: 11px;
-  color: #888;
+  color: var(--text-muted);
   text-decoration: none;
   flex-shrink: 0;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 .email-me-btn:hover {
-  border-color: #444;
-  color: #ededed;
-}
-
-/* ── CTA button small variant ── */
-.cta-button-sm {
-  padding: 5px 12px;
-  font-size: 12px;
-  gap: 6px;
+  border-color: var(--border-strong);
+  color: var(--text);
 }
 
 /* ── Social icon link (About card) ── */
@@ -307,14 +409,14 @@ body {
   align-items: center;
   padding: 4px;
   border-radius: 6px;
-  color: #555;
+  color: var(--text-dim);
   text-decoration: none;
   transition: color 0.15s ease, background 0.15s ease;
 }
 
 .social-icon-link:hover {
-  color: #888;
-  background: #111;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
 }
 
 /* ── Secondary button ── */
@@ -324,8 +426,8 @@ body {
   gap: 8px;
   padding: 8px 16px;
   background: transparent;
-  color: #888;
-  border: 1px solid #1f1f1f;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-family: var(--font-geist-sans);
   font-size: 13px;
@@ -335,18 +437,18 @@ body {
 }
 
 .secondary-button:hover {
-  border-color: #333;
-  color: #ededed;
+  border-color: var(--border-strong);
+  color: var(--text);
 }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #000; }
-::-webkit-scrollbar-thumb { background: #1f1f1f; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #333; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
 
 /* ── Selection ── */
 ::selection {
   background: rgba(0, 112, 243, 0.2);
-  color: #ededed;
+  color: var(--text);
 }

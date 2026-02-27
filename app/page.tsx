@@ -171,7 +171,14 @@ function StarIcon({ size = 12 }: { size?: number }) {
 ───────────────────────────────────────────── */
 export default function Portfolio() {
   return (
-    <main className="min-h-screen bg-black py-6 md:py-10">
+    <main
+      className="min-h-screen"
+      style={{
+        background: "var(--bg)",
+        paddingTop: "calc(52px + 1.5rem)",
+        paddingBottom: "1.5rem",
+      }}
+    >
       <div className="bento-grid">
 
         {/* ── About Me ── */}
@@ -199,7 +206,7 @@ export default function Portfolio() {
                 fontStyle: "italic",
                 fontSize: 28,
                 lineHeight: 1.2,
-                color: "#ededed",
+                color: "var(--text)",
                 marginTop: 10,
                 marginBottom: 12,
               }}
@@ -211,18 +218,18 @@ export default function Portfolio() {
                 fontFamily: "var(--font-geist-sans)",
                 fontSize: 13,
                 lineHeight: 1.7,
-                color: "#888",
+                color: "var(--text-muted)",
               }}
             >
               Product designer with 7 years of experience, currently working at JP Morgan Chase. If you&apos;re looking for someone who can hold their own in a strategy meeting and then jump into Figma or code to bring ideas to life, let&apos;s talk.
             </p>
 
             {/* Status section */}
-            <div style={{ borderTop: "1px solid #1a1a1a", marginTop: 20, paddingTop: 16 }}>
+            <div style={{ borderTop: "1px solid var(--border)", marginTop: 20, paddingTop: 16 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <div className="status-dot" />
-                  <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 12, color: "#ededed" }}>
+                  <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 12, color: "var(--text)" }}>
                     Available for full-time roles in Germany
                   </span>
                 </div>
@@ -236,7 +243,7 @@ export default function Portfolio() {
                 </a>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 12 }}>
-                <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 11, color: "#888" }}>
+                <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 11, color: "var(--text-muted)" }}>
                   See what I&apos;ve been doing on
                 </span>
                 <a href="#" className="social-icon-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
@@ -261,9 +268,9 @@ export default function Portfolio() {
               style={{
                 fontFamily: "var(--font-geist-mono)",
                 fontSize: 10,
-                color: "#888",
-                background: "#111",
-                border: "1px solid #1e1e1e",
+                color: "var(--text-muted)",
+                background: "var(--bg-subtle)",
+                border: "1px solid var(--border)",
                 borderRadius: 4,
                 padding: "2px 7px",
               }}
@@ -277,7 +284,7 @@ export default function Portfolio() {
               fontStyle: "italic",
               fontSize: 20,
               lineHeight: 1.35,
-              color: "#bbb",
+              color: "var(--text-sub)",
               marginTop: 14,
             }}
           >
@@ -294,7 +301,7 @@ export default function Portfolio() {
               style={{
                 fontFamily: "var(--font-geist-mono)",
                 fontSize: 10,
-                color: "#888",
+                color: "var(--text-muted)",
                 textDecoration: "none",
                 display: "flex",
                 alignItems: "center",
@@ -314,7 +321,7 @@ export default function Portfolio() {
                       style={{
                         fontFamily: "var(--font-geist-mono)",
                         fontSize: 11,
-                        color: "#888",
+                        color: "var(--text-muted)",
                         marginBottom: 8,
                       }}
                     >
@@ -325,7 +332,7 @@ export default function Portfolio() {
                         fontFamily: "var(--font-geist-sans)",
                         fontSize: 15,
                         fontWeight: 500,
-                        color: "#d0d0d0",
+                        color: "var(--text-sub)",
                         lineHeight: 1.3,
                         marginBottom: 6,
                       }}
@@ -337,16 +344,16 @@ export default function Portfolio() {
                         style={{
                           fontFamily: "var(--font-geist-mono)",
                           fontSize: 10,
-                          color: "#888",
-                          background: "#111",
-                          border: "1px solid #1e1e1e",
+                          color: "var(--text-muted)",
+                          background: "var(--bg-subtle)",
+                          border: "1px solid var(--border)",
                           borderRadius: 4,
                           padding: "2px 7px",
                         }}
                       >
                         {cs.category}
                       </span>
-                      <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "#888" }}>
+                      <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "var(--text-muted)" }}>
                         {cs.year}
                       </span>
                     </div>
@@ -354,7 +361,7 @@ export default function Portfolio() {
                       style={{
                         fontFamily: "var(--font-geist-sans)",
                         fontSize: 12,
-                        color: "#888",
+                        color: "var(--text-muted)",
                         marginTop: 8,
                         lineHeight: 1.5,
                       }}
@@ -380,7 +387,7 @@ export default function Portfolio() {
               style={{
                 fontFamily: "var(--font-geist-mono)",
                 fontSize: 10,
-                color: "#888",
+                color: "var(--text-muted)",
                 textDecoration: "none",
                 display: "flex",
                 alignItems: "center",
@@ -404,7 +411,7 @@ export default function Portfolio() {
                     fontFamily: "var(--font-geist-sans)",
                     fontSize: 13,
                     fontWeight: 450,
-                    color: "#ccc",
+                    color: "var(--text-sub)",
                     lineHeight: 1.4,
                     marginBottom: 4,
                   }}
@@ -415,7 +422,7 @@ export default function Portfolio() {
                   style={{
                     fontFamily: "var(--font-geist-mono)",
                     fontSize: 10,
-                    color: "#888",
+                    color: "var(--text-muted)",
                     display: "flex",
                     gap: 8,
                   }}
@@ -440,7 +447,7 @@ export default function Portfolio() {
               style={{
                 fontFamily: "var(--font-geist-mono)",
                 fontSize: 10,
-                color: "#888",
+                color: "var(--text-muted)",
                 textDecoration: "none",
                 display: "flex",
                 alignItems: "center",
@@ -473,7 +480,7 @@ export default function Portfolio() {
                       style={{
                         fontFamily: "var(--font-geist-sans)",
                         fontSize: 11,
-                        color: "#888",
+                        color: "var(--text-muted)",
                         lineHeight: 1.4,
                         marginBottom: 6,
                       }}
@@ -481,7 +488,7 @@ export default function Portfolio() {
                       {repo.description}
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-1" style={{ color: "#888" }}>
+                      <div className="flex items-center gap-1" style={{ color: "var(--text-muted)" }}>
                         <StarIcon size={10} />
                         <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10 }}>
                           {repo.stars}
@@ -496,7 +503,7 @@ export default function Portfolio() {
                             background: repo.langColor,
                           }}
                         />
-                        <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "#888" }}>
+                        <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "var(--text-muted)" }}>
                           {repo.lang}
                         </span>
                       </div>
@@ -519,7 +526,7 @@ export default function Portfolio() {
                   style={{
                     fontFamily: "var(--font-geist-mono)",
                     fontSize: 9,
-                    color: "#888",
+                    color: "var(--text-muted)",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     marginBottom: 8,
@@ -544,7 +551,7 @@ export default function Portfolio() {
           className="bento-card card-contact"
           style={{
             minHeight: 180,
-            background: "linear-gradient(135deg, #080808 0%, #0a0a10 100%)",
+            background: "linear-gradient(135deg, var(--bg-card-deep) 0%, var(--bg-card) 100%)",
           }}
         >
           {/* Subtle blue glow in contact card */}
@@ -571,7 +578,7 @@ export default function Portfolio() {
                   fontStyle: "italic",
                   fontSize: 22,
                   lineHeight: 1.3,
-                  color: "#bbb",
+                  color: "var(--text-sub)",
                   marginTop: 12,
                 }}
               >
@@ -581,7 +588,7 @@ export default function Portfolio() {
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                   fontSize: 12,
-                  color: "#888",
+                  color: "var(--text-muted)",
                   marginTop: 8,
                   lineHeight: 1.5,
                 }}
@@ -598,7 +605,7 @@ export default function Portfolio() {
                 style={{
                   fontFamily: "var(--font-geist-mono)",
                   fontSize: 11,
-                  color: "#888",
+                  color: "var(--text-muted)",
                 }}
               >
                 {PERSON.email}
@@ -614,7 +621,7 @@ export default function Portfolio() {
         style={{
           fontFamily: "var(--font-geist-mono)",
           fontSize: 10,
-          color: "#888",
+          color: "var(--text-muted)",
           letterSpacing: "0.08em",
         }}
       >
