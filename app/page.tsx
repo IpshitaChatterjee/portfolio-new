@@ -125,7 +125,7 @@ export default function Portfolio() {
       <div className="bento-grid">
 
         {/* ── About Me ── */}
-        <div className="bento-card card-hero" style={{ minHeight: 380, padding: 0 }}>
+        <div className="bento-card card-hero" style={{ padding: 0 }}>
           {/* Full-bleed photo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -317,12 +317,22 @@ export default function Portfolio() {
 
         {/* ── Experience ── */}
         <div className="bento-card card-experience">
-          <span className="label">Experience</span>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <span className="label">Experience</span>
+            <a
+              href="https://www.linkedin.com/in/ipshitachatterjee/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="exp-linkedin-link"
+            >
+              <LinkedInIcon size={12} />
+              LinkedIn
+            </a>
+          </div>
           <div style={{ marginTop: 14 }}>
             {EXPERIENCE.map((job) => (
               <div key={job.company} className="exp-entry">
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  {job.current && <div className="status-dot" style={{ flexShrink: 0 }} />}
                   <div>
                     <div
                       style={{
