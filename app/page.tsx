@@ -232,7 +232,7 @@ export default function Portfolio() {
                   rel="noopener noreferrer"
                   className="email-me-btn"
                 >
-                  Email me ↗
+                  Email me <ArrowUpRight size={11} />
                 </a>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
