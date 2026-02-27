@@ -42,11 +42,12 @@ const ARTICLES = [
 ];
 
 
-const STACK = {
-  Design: ["Figma", "Framer", "Spline", "Rive"],
-  Development: ["React", "Next.js", "TypeScript", "Rust"],
-  Tools: ["Vercel", "Linear", "Raycast", "Arc"],
-};
+const EXPERIENCE = [
+  { title: "UX Design Associate",   company: "JP Morgan Chase", period: "2025 – Present", current: true  },
+  { title: "Senior UX Consultant",  company: "EY Studio +",     period: "2021 – 2024",   current: false },
+  { title: "Senior Visual Designer", company: "UXReactor",      period: "2020 – 2021",   current: false },
+  { title: "Systems Engineer",      company: "Infosys",          period: "2018 – 2020",   current: false },
+];
 
 const LINKS = [
   { label: "GitHub", href: "#", icon: GitHubIcon },
@@ -314,31 +315,49 @@ export default function Portfolio() {
           href="#"
         />
 
-        {/* ── Stack ── */}
-        <div className="bento-card card-stack" style={{ minHeight: 180 }}>
-          <span className="label">Stack</span>
-          <div className="flex flex-col gap-4 mt-4">
-            {Object.entries(STACK).map(([category, tools]) => (
-              <div key={category}>
-                <div
+        {/* ── Experience ── */}
+        <div className="bento-card card-experience">
+          <span className="label">Experience</span>
+          <div style={{ marginTop: 14 }}>
+            {EXPERIENCE.map((job) => (
+              <div key={job.company} className="exp-entry">
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  {job.current && <div className="status-dot" style={{ flexShrink: 0 }} />}
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-geist-sans)",
+                        fontSize: 13,
+                        fontWeight: 450,
+                        color: "var(--text-sub)",
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {job.title}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-geist-mono)",
+                        fontSize: 10,
+                        color: "var(--text-muted)",
+                        marginTop: 3,
+                      }}
+                    >
+                      {job.company}
+                    </div>
+                  </div>
+                </div>
+                <span
                   style={{
                     fontFamily: "var(--font-geist-mono)",
-                    fontSize: 9,
+                    fontSize: 10,
                     color: "var(--text-muted)",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    marginBottom: 8,
+                    flexShrink: 0,
+                    marginLeft: 16,
                   }}
                 >
-                  {category}
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {tools.map((tool) => (
-                    <span key={tool} className="stack-tag">
-                      {tool}
-                    </span>
-                  ))}
-                </div>
+                  {job.period}
+                </span>
               </div>
             ))}
           </div>
