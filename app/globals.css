@@ -134,7 +134,7 @@ body {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #555;
+  color: #888;
   font-weight: 500;
 }
 
@@ -192,13 +192,13 @@ body {
 }
 
 .case-arrow {
-  transition: transform 0.2s ease;
-  color: #444;
+  transition: transform 0.2s ease, color 0.2s ease;
+  color: #888;
 }
 
 .case-entry:hover .case-arrow {
   transform: translateX(3px);
-  color: #888;
+  color: #bbb;
 }
 
 /* ── Writing entry ── */
@@ -271,6 +271,28 @@ body {
 .cta-button:hover {
   background: #338ef7;
   transform: translateY(-1px);
+}
+
+/* ── Email me pill ── */
+.email-me-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  font-family: var(--font-geist-sans);
+  font-size: 11px;
+  color: #888;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.email-me-btn:hover {
+  border-color: #444;
+  color: #ededed;
 }
 
 /* ── Secondary button ── */
