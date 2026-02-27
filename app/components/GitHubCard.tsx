@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 const USERNAME = "IpshitaChatterjee";
-const WEEKS = 16;
+const WEEKS = 38;
 const CELL = 11;
 const GAP = 3;
 const DAY_LABEL_W = 28;
