@@ -132,9 +132,9 @@ export default function Portfolio() {
             alt="Ipshita"
             style={{
               width: "100%",
-              height: 200,
+              height: 280,
               objectFit: "cover",
-              objectPosition: "center 15%",
+              objectPosition: "center 30%",
               display: "block",
             }}
           />
@@ -203,7 +203,7 @@ export default function Portfolio() {
         </div>
 
         {/* ── Now ── */}
-        <div className="bento-card card-now" style={{ minHeight: 210 }}>
+        <div className="bento-card card-now" style={{ minHeight: 160 }}>
           <div className="flex items-start justify-between">
             <span className="label">Now</span>
             <span
