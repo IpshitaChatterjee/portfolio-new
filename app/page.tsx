@@ -216,38 +216,22 @@ export default function Portfolio() {
             >
               Product designer with 7 years of experience, currently working at JP Morgan Chase. If you&apos;re looking for someone who can hold their own in a strategy meeting and then jump into Figma or code to bring ideas to life, let&apos;s talk.
             </p>
-          </div>
-        </div>
 
-        {/* ── Status ── */}
-        <div className="bento-card card-status" style={{ minHeight: 180 }}>
-          <span className="label">Status</span>
-          <div className="mt-4 flex items-center gap-2.5">
-            <div className="status-dot" />
-            <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 13, color: "#ededed" }}>
-              Available for work
-            </span>
-          </div>
-
-          <div className="mt-6" style={{ fontFamily: "var(--font-geist-sans)", fontSize: 12, color: "#555", lineHeight: 1.6 }}>
-            Open to
-          </div>
-          <div className="flex flex-col gap-1.5 mt-2">
-            {["Freelance", "Full-time", "Advisory"].map((type) => (
-              <div key={type} className="flex items-center gap-2">
-                <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#1f1f1f" }} />
-                <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 12, color: "#888" }}>
-                  {type}
+            {/* Status section */}
+            <div style={{ borderTop: "1px solid #1a1a1a", marginTop: 20, paddingTop: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <div className="status-dot" />
+                <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 12, color: "#ededed" }}>
+                  Available for work
                 </span>
               </div>
-            ))}
-          </div>
-
-          <div
-            className="mt-5"
-            style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "#444" }}
-          >
-            ↩ responds within 24h
+              <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#2e2e2e", flexShrink: 0 }} />
+                <span style={{ fontFamily: "var(--font-geist-sans)", fontSize: 11, color: "#555" }}>
+                  Open to Full-time roles in Germany
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
