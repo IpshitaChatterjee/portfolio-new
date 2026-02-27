@@ -1,4 +1,5 @@
 import React from "react";
+import { DirectionAwareCard } from "./components/DirectionAwareCard";
 
 /* ─────────────────────────────────────────────
    DATA — swap in your real content here
@@ -15,32 +16,6 @@ const PERSON = {
   currentSince: "Jan 2025",
 };
 
-const CASE_STUDIES = [
-  {
-    id: "01",
-    title: "Redesigning Onboarding at Scale",
-    category: "Product Design",
-    year: "2024",
-    description: "Reduced drop-off by 34% through progressive disclosure patterns.",
-    href: "#",
-  },
-  {
-    id: "02",
-    title: "Design System for Fintech",
-    category: "Design Systems",
-    year: "2023",
-    description: "Built a component library serving 12 teams and 200+ engineers.",
-    href: "#",
-  },
-  {
-    id: "03",
-    title: "Real-time Collaboration Tools",
-    category: "UX Research",
-    year: "2023",
-    description: "From 0→1 research to shipped feature for 50k+ users.",
-    href: "#",
-  },
-];
 
 const ARTICLES = [
   {
@@ -66,32 +41,6 @@ const ARTICLES = [
   },
 ];
 
-const REPOS = [
-  {
-    name: "design-tokens-sync",
-    description: "Sync design tokens across Figma, Style Dictionary, and CSS.",
-    stars: "234",
-    lang: "TypeScript",
-    langColor: "#3178c6",
-    href: "#",
-  },
-  {
-    name: "motion-primitives",
-    description: "Composable animation components for React applications.",
-    stars: "891",
-    lang: "React/TSX",
-    langColor: "#61dafb",
-    href: "#",
-  },
-  {
-    name: "palette-engine",
-    description: "Generate WCAG-compliant color palettes from a single seed.",
-    stars: "156",
-    lang: "Rust/WASM",
-    langColor: "#dea584",
-    href: "#",
-  },
-];
 
 const STACK = {
   Design: ["Figma", "Framer", "Spline", "Rive"],
@@ -158,13 +107,6 @@ function MapPin({ size = 12 }: { size?: number }) {
   );
 }
 
-function StarIcon({ size = 12 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-    </svg>
-  );
-}
 
 /* ─────────────────────────────────────────────
    PAGE
@@ -292,91 +234,17 @@ export default function Portfolio() {
           </p>
         </div>
 
-        {/* ── Case Studies ── */}
-        <div className="bento-card card-cases" style={{ minHeight: 400 }}>
-          <div className="flex items-center justify-between">
-            <span className="label">Case Studies</span>
-            <a
-              href="#"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-                fontSize: 10,
-                color: "var(--text-muted)",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              All work <ArrowUpRight size={10} />
-            </a>
-          </div>
-
-          <div className="mt-2">
-            {CASE_STUDIES.map((cs) => (
-              <a key={cs.id} href={cs.href} className="case-entry" style={{ display: "block", textDecoration: "none" }}>
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-geist-mono)",
-                        fontSize: 11,
-                        color: "var(--text-muted)",
-                        marginBottom: 8,
-                      }}
-                    >
-                      {cs.id}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: 15,
-                        fontWeight: 500,
-                        color: "var(--text-sub)",
-                        lineHeight: 1.3,
-                        marginBottom: 6,
-                      }}
-                    >
-                      {cs.title}
-                    </div>
-                    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-geist-mono)",
-                          fontSize: 10,
-                          color: "var(--text-muted)",
-                          background: "var(--bg-subtle)",
-                          border: "1px solid var(--border)",
-                          borderRadius: 4,
-                          padding: "2px 7px",
-                        }}
-                      >
-                        {cs.category}
-                      </span>
-                      <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "var(--text-muted)" }}>
-                        {cs.year}
-                      </span>
-                    </div>
-                    <p
-                      style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: 12,
-                        color: "var(--text-muted)",
-                        marginTop: 8,
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {cs.description}
-                    </p>
-                  </div>
-                  <div className="case-arrow mt-1 flex-shrink-0">
-                    <ArrowUpRight size={14} />
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
+        {/* ── Work Card 1 ── */}
+        <DirectionAwareCard
+          className="card-work-1"
+          background="linear-gradient(145deg, #130d07 0%, #2e1a08 45%, #0f0b06 100%)"
+          accentColor="#e07b3c"
+          label="Product Design · 2024"
+          title="Redesigning Onboarding at Scale"
+          description="Reduced drop-off by 34% through progressive disclosure and behavioural nudges."
+          href="#"
+          patternStyle="diagonal"
+        />
 
         {/* ── Writing ── */}
         <div className="bento-card card-writing" style={{ minHeight: 200 }}>
@@ -438,83 +306,17 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* ── Coding Projects ── */}
-        <div className="bento-card card-coding" style={{ minHeight: 200 }}>
-          <div className="flex items-center justify-between">
-            <span className="label">Projects</span>
-            <a
-              href="#"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-                fontSize: 10,
-                color: "var(--text-muted)",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              GitHub <ArrowUpRight size={10} />
-            </a>
-          </div>
-
-          <div className="flex flex-col gap-2 mt-3">
-            {REPOS.map((repo) => (
-              <a key={repo.name} href={repo.href} className="repo-card" style={{ textDecoration: "none" }}>
-                <div className="flex items-start justify-between gap-2">
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-geist-mono)",
-                        fontSize: 12,
-                        color: "#338ef7",
-                        marginBottom: 3,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {repo.name}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: 11,
-                        color: "var(--text-muted)",
-                        lineHeight: 1.4,
-                        marginBottom: 6,
-                      }}
-                    >
-                      {repo.description}
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-1" style={{ color: "var(--text-muted)" }}>
-                        <StarIcon size={10} />
-                        <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10 }}>
-                          {repo.stars}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <div
-                          style={{
-                            width: 8,
-                            height: 8,
-                            borderRadius: "50%",
-                            background: repo.langColor,
-                          }}
-                        />
-                        <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 10, color: "var(--text-muted)" }}>
-                          {repo.lang}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <ArrowUpRight size={12} />
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
+        {/* ── Work Card 2 ── */}
+        <DirectionAwareCard
+          className="card-work-2"
+          background="linear-gradient(145deg, #060c17 0%, #0c1f40 50%, #04080f 100%)"
+          accentColor="#4a9eff"
+          label="Design Systems · 2023"
+          title="Design System for Fintech"
+          description="Built a component library serving 12 teams and 200+ engineers across 4 products."
+          href="#"
+          patternStyle="dots"
+        />
 
         {/* ── Stack ── */}
         <div className="bento-card card-stack" style={{ minHeight: 180 }}>
