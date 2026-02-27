@@ -3,12 +3,32 @@
 import { useState, useEffect } from "react";
 
 const USERNAME = "IpshitaChatterjee";
-const WEEKS = 38;
+// 35 weeks gives equal visual left/right balance:
+// left = DAY_LABEL_W(28) + GAP(3) = 31px before first cell
+// right = GAP(3) + spacer(28) = 31px after last cell
+const WEEKS = 35;
 const CELL = 11;
 const GAP = 3;
 const DAY_LABEL_W = 28;
 
-const LEGEND_COLORS = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
+// GitHub-standard palettes for dark and light mode
+const DARK = {
+  empty: "#161b22",
+  l1: "#0e4429",
+  l2: "#006d32",
+  l3: "#26a641",
+  l4: "#39d353",
+  cellBorder: "rgba(255,255,255,0.06)",
+};
+const LIGHT = {
+  empty: "#ebedf0",
+  l1: "#9be9a8",
+  l2: "#40c463",
+  l3: "#30a14e",
+  l4: "#216e39",
+  cellBorder: "rgba(0,0,0,0.06)",
+};
+
 const DAY_LABELS = ["", "Mon", "", "Wed", "", "Fri", ""];
 
 interface DayData {
@@ -39,7 +59,6 @@ function buildAlignedGrid(
   monthLabels: { label: string; weekIndex: number }[];
   maxCount: number;
 } {
-  // Work in UTC to match the API date strings
   const nowUtc = new Date();
   const todayStr = nowUtc.toISOString().slice(0, 10);
   const today = new Date(todayStr + "T00:00:00Z");
@@ -47,7 +66,7 @@ function buildAlignedGrid(
   const rangeStart = new Date(today);
   rangeStart.setUTCDate(today.getUTCDate() - (weeks * 7 - 1));
 
-  // Rewind to most recent Sunday on or before rangeStart
+  // Rewind to Sunday on or before rangeStart
   const gridStart = new Date(rangeStart);
   gridStart.setUTCDate(rangeStart.getUTCDate() - rangeStart.getUTCDay());
 
@@ -59,17 +78,13 @@ function buildAlignedGrid(
     for (let d = 0; d < 7; d++) {
       const dateStr = cur.toISOString().slice(0, 10);
       const inRange = cur >= rangeStart && cur <= today;
-      week.push({
-        date: dateStr,
-        count: inRange ? byDate[dateStr] || 0 : 0,
-        inRange,
-      });
+      week.push({ date: dateStr, count: inRange ? byDate[dateStr] || 0 : 0, inRange });
       cur.setUTCDate(cur.getUTCDate() + 1);
     }
     grid.push(week);
   }
 
-  // Month labels: emit one label per calendar month (at the first week that contains the 1st)
+  // Month labels: one per calendar month, at the first week containing an in-range day
   const monthLabels: { label: string; weekIndex: number }[] = [];
   let lastMonth = -1;
   grid.forEach((week, wi) => {
@@ -84,13 +99,25 @@ function buildAlignedGrid(
         });
         lastMonth = month;
       }
-      break; // only check first in-range day per week
+      break;
     }
   });
 
   const maxCount = Math.max(...grid.flat().map((d) => d.count), 1);
-
   return { grid, monthLabels, maxCount };
+}
+
+// Fetch a single page gracefully (returns [] on failure)
+async function fetchPage(page: number) {
+  try {
+    const r = await fetch(
+      `https://api.github.com/users/${USERNAME}/events/public?per_page=100&page=${page}`,
+      { headers: { Accept: "application/vnd.github+json" }, cache: "no-store" }
+    );
+    return r.ok ? r.json() : [];
+  } catch {
+    return [];
+  }
 }
 
 export function GitHubCard({ className = "" }: { className?: string }) {
@@ -99,16 +126,28 @@ export function GitHubCard({ className = "" }: { className?: string }) {
   const [maxCount, setMaxCount] = useState(1);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
+  // Track light/dark mode by watching the html.light class
+  useEffect(() => {
+    const update = () =>
+      setIsDark(!document.documentElement.classList.contains("light"));
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  // Fetch up to 3 pages (300 events) for more complete commit history
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch(
-          `https://api.github.com/users/${USERNAME}/events/public?per_page=100`,
-          { headers: { Accept: "application/vnd.github+json" } }
-        );
-        if (!res.ok) throw new Error("api");
-        const events = await res.json();
+        const pages = await Promise.all([1, 2, 3].map(fetchPage));
+        const events = pages.flat();
+        if (!events.length) throw new Error("no data");
         const byDate = buildDayMap(events);
         const { grid: g, monthLabels: ml, maxCount: mc } = buildAlignedGrid(byDate, WEEKS);
         setGrid(g);
@@ -123,15 +162,19 @@ export function GitHubCard({ className = "" }: { className?: string }) {
     load();
   }, []);
 
+  const pal = isDark ? DARK : LIGHT;
+
   function getColor(count: number, inRange: boolean): string {
     if (!inRange) return "transparent";
-    if (count === 0) return "#161b22";
+    if (count === 0) return pal.empty;
     const i = count / maxCount;
-    if (i < 0.25) return "#0e4429";
-    if (i < 0.5) return "#006d32";
-    if (i < 0.75) return "#26a641";
-    return "#39d353";
+    if (i < 0.25) return pal.l1;
+    if (i < 0.5) return pal.l2;
+    if (i < 0.75) return pal.l3;
+    return pal.l4;
   }
+
+  const legendColors = [pal.empty, pal.l1, pal.l2, pal.l3, pal.l4];
 
   const mono: React.CSSProperties = {
     fontFamily: "var(--font-geist-mono)",
@@ -152,7 +195,7 @@ export function GitHubCard({ className = "" }: { className?: string }) {
       ) : (
         <div style={{ display: "flex", flexDirection: "column" }}>
 
-          {/* ── Month labels ── */}
+          {/* ── Month labels — offset to align with cell grid ── */}
           <div
             style={{
               position: "relative",
@@ -177,7 +220,7 @@ export function GitHubCard({ className = "" }: { className?: string }) {
             ))}
           </div>
 
-          {/* ── Grid: day labels + week columns ── */}
+          {/* ── Grid: day labels + week columns + right spacer ── */}
           <div style={{ display: "flex", gap: GAP, alignItems: "flex-start" }}>
 
             {/* Day-of-week labels */}
@@ -225,18 +268,19 @@ export function GitHubCard({ className = "" }: { className?: string }) {
                       height: CELL,
                       borderRadius: 2,
                       background: getColor(day.count, day.inRange),
-                      border: day.inRange
-                        ? "1px solid rgba(255,255,255,0.06)"
-                        : "none",
+                      border: day.inRange ? `1px solid ${pal.cellBorder}` : "none",
                       flexShrink: 0,
                     }}
                   />
                 ))}
               </div>
             ))}
+
+            {/* Right spacer — mirrors day label width for equal visual padding */}
+            <div style={{ width: DAY_LABEL_W, flexShrink: 0 }} />
           </div>
 
-          {/* ── Legend ── */}
+          {/* ── Legend — inset to align with cell grid edges ── */}
           <div
             style={{
               display: "flex",
@@ -244,10 +288,11 @@ export function GitHubCard({ className = "" }: { className?: string }) {
               alignItems: "center",
               gap: 4,
               marginTop: 8,
+              marginRight: DAY_LABEL_W + GAP,
             }}
           >
             <span style={{ ...mono, fontSize: 10 }}>Less</span>
-            {LEGEND_COLORS.map((color, i) => (
+            {legendColors.map((color, i) => (
               <div
                 key={i}
                 style={{
@@ -255,7 +300,7 @@ export function GitHubCard({ className = "" }: { className?: string }) {
                   height: CELL,
                   borderRadius: 2,
                   background: color,
-                  border: "1px solid rgba(255,255,255,0.06)",
+                  border: `1px solid ${pal.cellBorder}`,
                   flexShrink: 0,
                 }}
               />
