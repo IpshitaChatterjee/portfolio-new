@@ -202,9 +202,15 @@ export function GitHubCard({ className = "" }: { className?: string }) {
                           borderRadius: 2,
                           background:
                             day.count === 0
-                              ? "var(--bg-subtle)"
-                              : `rgba(255,255,255,${0.18 + intensity * 0.72})`,
-                          border: "1px solid var(--border)",
+                              ? "#161b22"
+                              : intensity < 0.25
+                              ? "#0e4429"
+                              : intensity < 0.5
+                              ? "#006d32"
+                              : intensity < 0.75
+                              ? "#26a641"
+                              : "#39d353",
+                          border: "1px solid rgba(255,255,255,0.06)",
                           flexShrink: 0,
                         }}
                       />

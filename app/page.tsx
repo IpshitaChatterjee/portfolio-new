@@ -266,13 +266,13 @@ export default function Portfolio() {
             </a>
           </div>
 
-          <div className="mt-3">
-            {ARTICLES.map((article) => (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0 24px", marginTop: 12 }}>
+            {ARTICLES.map((article, i) => (
               <a
                 key={article.title}
                 href={article.href}
                 className="writing-entry"
-                style={{ display: "block", textDecoration: "none" }}
+                style={{ display: "block", textDecoration: "none", borderBottom: "none", borderRight: i < ARTICLES.length - 1 ? "1px solid var(--border)" : "none", paddingRight: i < ARTICLES.length - 1 ? 24 : 0 }}
               >
                 <div
                   style={{
@@ -281,7 +281,7 @@ export default function Portfolio() {
                     fontWeight: 450,
                     color: "var(--text-sub)",
                     lineHeight: 1.4,
-                    marginBottom: 4,
+                    marginBottom: 6,
                   }}
                 >
                   {article.title}

@@ -175,13 +175,13 @@ html.light .navbar-logo {
     padding: 24px;
   }
 
-  .card-hero    { grid-area: 1 / 1 / 4 / 3; }
+  .card-hero    { grid-area: 1 / 1 / 4 / 3; align-self: start; }
   .card-work-1  { grid-area: 1 / 3 / 2 / 5; }
   .card-now     { grid-area: 2 / 3 / 3 / 5; }
-  .card-writing { grid-area: 3 / 3 / 4 / 5; }
+  .card-github  { grid-area: 3 / 3 / 4 / 5; }
   .card-experience { grid-area: 4 / 1 / 5 / 3; }
   .card-work-2  { grid-area: 4 / 3 / 5 / 5; }
-  .card-github  { grid-area: 5 / 1 / 6 / 5; }
+  .card-writing { grid-area: 5 / 1 / 6 / 5; }
   .card-contact { grid-area: 6 / 1 / 7 / 5; }
 }
 
